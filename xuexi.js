@@ -85,3 +85,41 @@ function qipan(a){
   return console.log(r)
 }
 
+function range(start,end){
+  var res = []
+  for (var i = start;i <=end ;i++){
+      res.push(i)
+  }
+  return res
+}
+
+function sum(array){
+  var res = 0
+  for(var i=0;i<arry.length;i++){
+      res+=array[i]
+  }
+  return res
+}
+
+function range(start,end,step){
+  var res = []
+  if(start < end ){
+      for (var i = start;i <=end ;i+=step){
+          res.push(i)
+      } return res
+  } else if(start > end&&step <0){
+      for(var i = start;i>=end ;i+=step){
+          res.push(i)
+      } return res
+  }
+}
+function reverseArray(array){
+  var res = []
+  var j = array.length
+  for(var i=0;i<j;i++){
+      res.push(array.pop())
+  }
+  return res
+}
+
+
