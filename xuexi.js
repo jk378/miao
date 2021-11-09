@@ -123,3 +123,17 @@ function reverseArray(array){
 }
 
 
+function array2list (ary){
+  var nodes = []
+  for(var i = 0;i < ary.length;i++){
+      var node = {}
+      node.value = ary[i]
+      node.rest = null
+      nodes.push(node)
+  }
+  for(var i = 0;i < ary.length-1  ;i++){
+      nodes[i].rest = nodes[i+1]
+  }
+  return nodes[0]
+}
+

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Document</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
@@ -25,7 +26,7 @@
     function a(){
       return 8
     }
-
+    lorem
   </pre>
   <hr>
   <ul>
@@ -58,7 +59,54 @@
   </dl>
   <hr>
   <h3>Google搜索</h3>
-  <input type="">
+  <form action="https://www.google.com.hk/search" target=_blank>
+    <input type="text" name=q  required placeholder="请输入搜索内容">
+    <button>在新窗口打开搜索结果</button>
+</form>
+<hr>
+<form action="">
+  <dl>
+      <dt>个人信息调查表</dt>
+      <br>
+      <dt>性别</dt>
+        <dd><input type="radio" name=gender id=mail><label for="mail"> 男</label>
+          <label><input type="radio" name=gender> 女</label></dd>
+      <dt>年龄</dt>
+          <dd>
+            <select name="" id="">
+              <optgroup label="少年">
+                <option value="" checked hidden>请选择</option>
+                <option value="">6-9</option>
+                <option value="">9-16</option>
+              </optgroup>
+              <optgroup label=青年>
+                <option value="">17-23</option>
+                <option value="">24-35</option>
+              </optgroup>
+              <optgroup label=中年>
+                <option value="">36-44</option>
+                <option value="">45-55</option>
+              </optgroup>
+            </select>
+          </dd>
+      <dt>生日</dt>
+          <dd><input type="date"></dd>
+      <dt>生辰</dt>
+          <dd><input type="time"></dd>
+      <dt>照片</dt>
+          <dd><label>点我上传照片<input type="file" accept="image/*" hidden></label></dd>
+      <dt>肤色</dt>
+          <dd><input type="color"></dd>
+      <dt>自我介绍</dt>
+          <dd><textarea name="" id="" cols="30" rows="10"> &lt;/textarea></textarea></dd>
+    </dl>
+    <fieldset disabled>
+      <legend>禁用</legend>
+      <input type="text"><input type="text"><input type="text"><input type="text">
+
+    </fieldset>
+    <button>提交</button> <button type="reset">重置</button>
+  </form>
 
   <div id='bottom'></div>
 </body>
