@@ -10,6 +10,10 @@
       box-sizing: border-box;
       margin: 0;
     }
+    main{
+      width: 600px;
+      margin: auto;
+    }
     .a{
       background-color: #000;
 
@@ -26,6 +30,7 @@
       margin: 100px auto 20px;
       xborder: 1px solid black;
       text-align: center;
+      line-height: 34px;
     }
     .b > div{
       width: 180px;
@@ -65,37 +70,71 @@
       text-align: center;
       margin: auto;
     }
+    .inline{
+      font-size:0px;
+    }
+    .inline span{
+      xvertical-align:bottom;
+      font-size:15px;
+      text-align: center;
+      display: inline-block;
+      border: 3px solid black;
+      width: 180px;
+      height: 40px;
+      margin: 0 30px 15px 0px;
+
+    }
+    div span:nth-child(3n+3){
+      margin-right: 0;
+    }
   </style>
 </head>
 <body>
-  <p class="a"><span> hello world 请调整浏览器窗口大小查看效果</span></p>
+  <main>
+      <p class="a"><span> hello world 请调整浏览器窗口大小查看效果</span></p>
 
-  <div class='b'>
-    <div>产a品</div>
-    <div>产品</div>
-    <div>产品</div>
-    <div>产品</div>
-    <div>产品</div>
-    <div>产a品</div>
-    <div>产品</div>
-    <div>产品</div>
-    <div>产品</div>
-    <div>产品</div>
-    <div>产品</div>
-    <div>产品</div>
-  </div>
+    <div class='b'>
+      <div>产a品</div>
+      <div>产品</div>
+      <div>产品</div>
+      <div>产品</div>
+      <div>产品</div>
+      <div>产a品</div>
+      <div>产品</div>
+      <div>产品</div>
+      <div>产品</div>
+      <div>产品</div>
+      <div>产品</div>
+      <div>产品</div>
+    </div>
 
-  <section>
-    <p>link</p>
-    <p>link</p>
-    <p>link</p>
-    <p>link</p>
-    <p>link</p>
-  </section>
+    <div class="inline">
+      <span>inline</span>
+      <span>inline</span>
+      <span>inline</span>
+      <span>inline</span>
+      <span>inline</span>
+      <span>inline</span>
+      <span>inline</span>
+      <span>inline</span>
+      <span>inline</span>
+      <span>inline</span>
+      <span>inline</span>
+      <span>inline</span>
+    </div>
+    <section>
+      <p>link</p>
+      <p>link</p>
+      <p>link</p>
+      <p>link</p>
+      <p>link</p>
+    </section>
 
-  <footer>
-    <p> ©版权所有</p>
-    <p> 本页所有布局均使用块元素</p>
-  </footer>
+    <footer>
+      <p> ©版权所有</p>
+      <p> 本页所有布局均使用块元素</p>
+    </footer>
+  </main>
+
 </body>
 </html>
