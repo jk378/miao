@@ -6,80 +6,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    * {
+    *{
+      background-color: rgba(0, 0, 0, 0.05);
+      box-shadow: inset 0 0 1px  red;
+      box-sizing:border-box;
+
+    }
+    html{
+      height: 100%;
+
+    }
+    body{
       margin: 0;
-      box-sizing: border-box;
+      height: 100%;
       font-size: 0;
 
-      vertical-align: bottom;
     }
-
-    span  {
-      font-size: 30px;
-
-      width:200px ;
+    aside,section,footer{
+      font-size: initial;
+      vertical-align: top;
+      width: 200px;
+      height: 100%;
+      display: inline-block;
       border: 1px solid black;
+    }
+    div{
       display: inline-block;
-      height: 100vh;
+      vertical-align: top;
+      font-size: initial;
+      width:calc(100% - 600px);
+      height: 100%;
+      border: 1px solid black;
     }
-    .fantasy{
-      font-size: 30px;
-      display: inline-block;
-      width: calc(100vw - 617px);
-    }
-
-    .a,.b{
-      width: calc(100vw - 617px);
-
-      padding: 10px;
-    }
-    .a {
-      height: 70px;
-    }
-    .b {
-      height: calc(100vh - 70px);
-    }
-    .c{
+    div header{
       height: 100px;
-    }
-    .d{
-      height: calc(100vh - 100px);
+     x border: 1px solid black;
 
-      overflow: scroll;
-      overflow-x: hidden;
     }
-
+    div main{
+      height: calc(100% - 100px);
+    }
   </style>
-
 </head>
 <body>
-  <span class="nav">
-    <span class="c">
-      OALD Se7en
-    </span>
-
-    <span class="d">
-
-    </span>
-  </span>
-
-  <span class="fantasy">
-    <span class="a">
-      fantasy
-
-    </span>
-    <span class="b">
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa corrupti, asperiores, sint, cum excepturi ullam commodi eum voluptates reiciendis eius ratione. Voluptatem, sequi enim beatae saepe culpa voluptas explicabo ea.
-    </span>
-
-  </span>
-  <span>
-    Vocabulary
-
-  </span>
-
-  <span>
-    History
-  </span>
+  <aside>asdsad</aside>
+  <div>
+    <header>header</header>
+    <main>main</main>
+  </div>
+  <section>section</section>
+  <footer>footer</footer>
 </body>
 </html>
