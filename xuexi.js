@@ -137,3 +137,84 @@ function array2list (ary){
   return nodes[0]
 }
 
+function arrtList(arr){
+  var head = {value : arr[0],rest : null}
+  var phead = head
+  var c
+  for (var i = 1;i < arr.length;i++){
+    c = {value:arr[i],rest :null }
+    phead.rest = c
+    phead = c
+  }
+  return head
+}
+
+function listToArray(list){
+  var res = []
+  while(list){
+    res.push(list.value)
+    list = list.rest
+  }
+  return res
+}
+
+function prepend(a, list){
+  return {value:a,rest:list}
+}
+
+function nth(list, a){
+  var count = 0
+  while(count < a){
+    if(list){
+      list = list.rest
+      count++
+    } else return undefined
+  }
+  return list.value
+}
+
+var deepEqual (a,b){
+
+}
+
+var Stack =function() {
+  var result = []
+  this.get = function(){
+    return result
+  }
+  this.push = function(ele){
+    result.push(ele)
+  }
+  this.pop = function(){
+    return result.pop()
+  }
+  this.peek = function(){
+    return result[result.length - 1]
+  }
+  this.isEmpty = function(){
+    return result.length == 0
+  }
+  this.clear = function (){
+    result = []
+  }
+  this.size = function(){
+    return result.length
+  }
+}
+
+function  d2b (d){
+  var s = new Stack()
+  var c = 0
+  var r = ''
+  while(d > 0){
+    s.push(d % 2)
+    d = Math.floor(d / 2)
+    c++
+  }
+  for(var i = 0;i < c;i++){
+    r+= s.pop()
+  }
+  return r
+}
+
+
