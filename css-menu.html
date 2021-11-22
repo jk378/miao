@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      font-size: 0;
+      padding: 0;
+    }
+    nav > ul > li{
+      position: relative;
+    }
+    nav{
+      padding: 0 0 0 20px;
+      background-color: rgb(60,60,60);
+      color: rgb(172,172,172);
+    }
+    ul{
+      background-color: rgb(60,60,60);
+    }
+    li{
+      display: inline-block;
+      box-sizing: border-box;
+      background-color:rgb(60,60,60);
+      width: 80px;
+      height: 50px;
+      line-height: 50px;
+      font-size: initial;
+      text-align: center;
+    }
+    li:hover{
+      background-color:rgb(80,80,80);
+    }
+    .yj{
+      position: absolute;
+      left: 0px;
+      visibility: hidden;
+    }
+    li:hover .yj{
+      visibility: visible;
+    }
+    .yj > li,   .ej li{
+      width: 150px;
+    }
+    .ej{
+      position: absolute;
+      left: 150px;
+      top: 0px;
+      visibility: hidden;
+    }
+
+    .yj li:hover .ej{
+      visibility: visible;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li>文件
+        <ul class="yj">
+          <li>第二
+            <ul class="ej">
+              <li>第三</li>
+              <li>第三</li>
+              <li>第三</li>
+              <li>第三</li>
+              <li>第三</li>
+            </ul>
+          </li>
+          <li>第二</li>
+          <li>第二</li>
+          <li>第二</li>
+          <li>第二</li>
+        </ul>
+      </li>
+      <li>编辑
+        <ul class="yj">
+          <li>第二
+            <ul class="ej">
+              <li>第三</li>
+              <li>第三</li>
+              <li>第三</li>
+              <li>第三</li>
+              <li>第三</li>
+            </ul>
+          </li>
+          <li>第二</li>
+          <li>第二</li>
+          <li>第二</li>
+          <li>第二</li>
+        </ul>
+      </li>
+      <li>第一</li>
+      <li>第一</li>
+      <li>第一</li>
+    </ul>
+  </nav>
+</body>
+</html>
