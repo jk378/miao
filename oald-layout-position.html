@@ -6,85 +6,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    html , body{
-      margin: 0;
+    * {
+      background-color:rgb(0,0,0,0.1);
+      box-shadow: inset 0 0 1px red;
+    }
+    body , html{
+      margin:0;
       height: 100%;
+    }
+    div{
+      width: 100%;
+      min-width: 500px;
+      height: 100%;
+      position: relative;
     }
     aside{
-      width: 200px;
-      background-color: yellow;
+      position: absolute;
+      width: 20%;
       height: 100%;
-      overflow: auto;
-      overflow-x: hidden;
-    }
-    main{
-      height: 100%;
-      background-color: pink;
-      width: calc(100% - 200px);
-      position: fixed;
-      left:200px ;
-      top: 0;
     }
     header{
-      width: calc(100% - 400px);
-      height: 200px;
-      background-color: blue;
-    }
-    section{
-      width: calc(100% - 400px);
-      height: calc(100% - 200px);
-      background-color: pink;
-    }
-    div:last-child{
-      width: 200px;
-      height: 100%;
-      background-color: red;
-      position: fixed;
-      right: 0;
-      top: 0;
-      overflow: auto;
-    }
-    div:nth-last-child(2){
-      width: 200px;
-      height: 100%;
-      background-color: green;
       position: absolute;
-      right: 200px;
+      right: 40%;
+      left: 20%;
       top: 0;
-      overflow: auto;
+      bottom: 80%;
+    }
+    main{
+      position: absolute;
+      right: 40%;
+      left: 20%;
+      top: 20%;
+      bottom: 0;
+    }
+    .l{
+      left: 0;
+    }
+    .r1{
+      right: 0;
+    }
+    .r2{
+      right: 20%;
     }
   </style>
 </head>
 <body>
-  <aside>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum soluta, quod cum quidem officiis maiores eius tempora! Esse, animi dignissimos! Aut adipisci similique aliquid quia praesentium modi quis asperiores sint!
-    Eos amet eveniet soluta voluptatibus tempore. Odit blanditiis nulla reprehenderit iste culpa voluptate nesciunt ducimus, pariatur quo recusandae soluta est non officia explicabo itaque consectetur necessitatibus quaerat provident voluptatem consequuntur.
-    Quasi ex ipsum saepe nisi facere hic temporibus. Totam quo eos eligendi fugit. Delectus alias optio deserunt ut voluptatibus a nulla, tenetur, pariatur cupiditate nemo atque suscipit quae vitae culpa?
-    Perferendis eius velit sunt eligendi id necessitatibus unde quam atque quasi. Velit consectetur ipsum, dolorem, nostrum incidunt minus reiciendis sed dolore non cum pariatur eveniet deleniti dolores veritatis quos ullam?
-    Veniam accusantium, atque sunt blanditiis, pariatur, sequi et esse praesentium consectetur libero perspiciatis nam non cum veritatis. Fugiat, odit fuga pariatur esse, reprehenderit ducimus accusamus obcaecati libero officia mollitia repellendus?
-    Deserunt distinctio rem a temporibus ducimus voluptas molestiae! Commodi eaque in quo tenetur illo, ducimus voluptas voluptatum animi natus aperiam iste sapiente quam optio. Magnam deleniti impedit quos? Quas, et.
-    Sed quod consectetur commodi eaque aliquam, enim temporibus, tenetur error ducimus libero, officiis vel magni accusamus placeat reiciendis dolorem rem veniam quae. Ipsa, veniam dolor. Magni, ex? Quidem, deleniti adipisci!
-    Tempore repellat optio maiores provident ex pariatur rerum quae. Cum in doloribus, culpa consequatur totam obcaecati dicta exercitationem dolorum nemo iusto quos! Sunt, delectus! Nihil deserunt vero cupiditate non ullam.
-    Doloribus porro pariatur ullam ad ipsam ratione provident, fugit sed natus error qui voluptate unde numquam cupiditate accusantium dolore! Obcaecati ipsa expedita eos necessitatibus laborum quidem autem mollitia quia beatae.
-    Dolorum, placeat perferendis dolor quae itaque laborum magnam aperiam modi nostrum vel fuga suscipit mollitia repellat veniam tenetur aliquam quasi delectus dolore? Exercitationem voluptatibus obcaecati repudiandae facere numquam vitae in.
-  </aside>
-  <main>
-    <header>
-
-    </header>
-    <section>
-
-    </section>
-    <div>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim sint maiores dolor adipisci provident possimus perferendis, similique ipsum fuga voluptate suscipit ipsa quia nemo molestiae nisi doloremque dignissimos totam unde.
-      Quos labore iusto velit! Quo, nesciunt modi expedita quae incidunt est iste porro sunt, dolorum optio totam fuga quas et accusamus laborum, voluptatum temporibus ex reprehenderit perferendis iusto eos placeat!
-        Earum aliquam minima, unde consequatur suscipit recusandae praesentium corrupti dolores sed sint libero placeat adipisci inventore eveniet. Cum quam dolores quia, suscipit inventore sed ab commodi, culpa quas sit labore.
-    </div>
-    <div>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, dolorum vitae. Veritatis vero harum distinctio nemo, impedit id amet, voluptates maiores illum laudantium hic expedita repellat suscipit natus. Dolores, non! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt tempora corporis, exercitationem deleniti temporibus provident distinctio, expedita tempore explicabo rem laboriosam, cum quia nesciunt reprehenderit facere nam similique? Totam, ipsum!
-      Nisi dolorem ipsum suscipit voluptates accusamus atque quas? Voluptatem deserunt adipisci, tempore eligendi vel eos voluptas. In, sit cupiditate perferendis nemo voluptatem ad amet laboriosam eligendi id earum eaque reiciendis.
-      Accusamus, quibusdam optio, iure incidunt commodi rerum tempore rem, hic corrupti amet ea aut delectus! Provident reiciendis totam recusandae quasi alias voluptatem fuga mollitia voluptate aut, placeat porro debitis tempora? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores, voluptatum fuga. Laborum cupiditate rerum architecto reiciendis ab tempora accusamus, nihil alias, reprehenderit praesentium quod quas id hic vel voluptatum odio?
-      </div>
-  </main>
+  <div>
+    <aside class="l"></aside>
+    <header></header>
+    <main></main>
+    <aside class="r1"></aside>
+    <aside class="r2"></aside>
+  </div>
 </body>
 </html>
