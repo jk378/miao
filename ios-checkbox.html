@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div{
+      position: relative;
+
+    }
+    input{
+      display: none;
+
+    }
+    .n1{
+      display: block;
+      width: 280px;
+      height: 150px;
+      border-radius: 100px;
+      border: gray solid 3px;
+      transition: linearyc 0.6s ;
+      background-color: rgb(255,255,255);
+    }
+    .n2{
+      position: absolute;
+      top: 0;
+      left: 10px;
+      bottom: 0;
+      margin: auto 0 ;
+      width:136px;
+      height: 136px;
+      border-radius: 500px;
+      background-color: rgb(240,240,240);
+      transition: left ease-in-out 0.6s ;
+    }
+    .n3{
+      position: absolute;
+      top: 0;
+      left: 10px;
+      bottom: 0;
+      margin: auto 0 ;
+      width:136px;
+      height: 136px;
+      border-radius: 500px;
+      background-color: rgb(240,240,240);
+      transition: left ease-in-out 0.6s 0.02s;
+    }
+    .n4{
+      position: absolute;
+      top: 0;
+      left: 10px;
+      bottom: 0;
+      margin: auto 0 ;
+      width:136px;
+      height: 136px;
+      border-radius: 500px;
+      background-color: rgb(240,240,240);
+      transition: left ease-in-out 0.6s 0.05s;
+    }
+    .n5{
+      position: absolute;
+      top: 0;
+      left: 10px;
+      bottom: 0;
+      margin: auto 0 ;
+      width:136px;
+      height: 136px;
+      border-radius: 500px;
+      background-color: rgb(240,240,240);
+      transition: left ease-in-out 0.6s 0.08s;
+    }
+    .n6{
+      position: absolute;
+      top: 0;
+      left: 10px;
+      bottom: 0;
+      margin: auto 0 ;
+      width:136px;
+      height: 136px;
+      border-radius: 500px;
+      background-color: rgb(240,240,240);
+      transition: left ease-in-out 0.6s 0.1s;
+    }
+    input:checked + .n1{
+      background-color: rgb(48, 273, 75);
+    }
+    input:checked + .n1 + .n2{
+      left: 134px;
+    }
+    input:checked + .n1 + .n2 +.n3{
+      left: 134px;
+    }
+    input:checked + .n1 + .n2 +.n3+.n4{
+      left: 134px;
+    }
+    input:checked + .n1 + .n2 +.n3+.n4 +.n5{
+      left: 134px;
+    }
+    input:checked + .n1 + .n2 +.n3+.n4 +.n5 +.n6{
+      left: 134px;
+    }
+
+  </style>
+</head>
+<body>
+  <div>
+    <input type="checkbox" id='ios'>
+    <label for="ios" class="n1"></label>
+    <label for="ios" class="n2"></label>
+    <label for="ios" class="n3"></label>
+    <label for="ios" class="n4"></label>
+    <label for="ios" class="n5"></label>
+    <label for="ios" class="n6"></label>
+
+
+
+  </div>
+</body>
+</html>
