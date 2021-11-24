@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style type="text/less">
+    ul{
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    .menu{
+      li {
+        position:relative;
+        &:hover{
+          background-color: green;
+          > ul{
+            display: block;
+          }
+        }
+      }
+      > li{
+        display: inline-block;
+      }
+      ul {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left:0;
+          ul{
+            top: 0;
+            left:100%;
+          }
+      }
+
+    }
+  </style>
+</head>
+<body>
+  <ul class="menu">
+    <li>Lorem.
+      <ul>
+        <li>ww1
+          <ul>
+            <li>3ccccc</li>
+            <li>3333ww2</li>
+            <li>3333ww3</li>
+            <li>3333ww4</li>
+            <li>3333ww5</li>
+          </ul>
+        </li>
+        <li>ww2</li>
+        <li>ww3</li>
+        <li>ww4</li>
+        <li>ww5</li>
+      </ul>
+    </li>
+    <li>Explicabo.
+      <ul>
+        <li>ww1</li>
+        <li>ww2</li>
+        <li>ww3</li>
+        <li>ww4</li>
+        <li>ww5</li>
+      </ul>
+    </li>
+    <li>Eos.</li>
+    <li>Non.</li>
+    <li>Eos?</li>
+  </ul>
+  <script src="../less.min.js"></script>
+</body>
+</html>
