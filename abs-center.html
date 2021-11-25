@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    section.p1{
+      width: 200px;
+      height: 200px;
+      border: 2px solid black;
+      display: table-cell;
+      text-align: center;
+
+      vertical-align: middle;
+    }
+    div.p1{
+      display: inline-block;
+
+      height: 50px;
+      width: 50px;
+      background-color: yellow;
+    }
+
+
+    section.p2{
+      width: 200px;
+      height: 200px;
+      border: 2px solid black;
+      position: relative;
+    }
+    div.p2{
+      position: absolute;
+      height: 50px;
+      width: 50px;
+      background-color: yellow;
+      margin: auto;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+    }
+
+    section.p3{
+      width: 200px;
+      height: 200px;
+      border: 2px solid black;
+      font-size: 0;
+      line-height: 200px;
+      text-align: center;
+    }
+    div.p3{
+      height: 50px;
+      width: 50px;
+      background-color: yellow;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="p1">
+    <div class="p1"></div>
+  </section>
+
+  <section class="p2">
+    <div class="p2"></div>
+  </section>
+
+  <section class="p3">
+    <div class="p3"></div>
+  </section>
+
+</body>
+</html>
