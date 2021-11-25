@@ -22,9 +22,56 @@
     td:hover{
       border:solid 5px red;
     }
+/*
+    div{
+      width: 200px;
+      height: 200px;
+    }
+    span{
+      border: 5px solid blue;
+      width: 50px;
+      height: 50px;
+      float: left;
+    }
+    span:nth-child(-n + 6){
+      border-bottom: none;
+    }
+    span:nth-child(3n + 1),
+    span:nth-child(3n + 2){
+      border-right: none;
+    } */
+
+    div{
+      width: 168px;
+      height: 168px;
+      border: 3px solid blue;
+    }
+    span{
+      border: 3px solid blue;
+      width: 50px;
+      height: 50px;
+      float: left;
+    }
+    /* span:hover {
+
+      border: 3px solid red;
+    } */
+    span:hover{
+      position: relative;
+    }
+    span:hover::after{
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: -6px;
+      border: 6px solid red;
+      width: 50px;
+      height: 50px;
+    }
   </style>
 </head>
 <body>
+  表格
   <table>
     <col>
     <col>
@@ -45,5 +92,10 @@
       <td>9</td>
     </tr>
   </table>
+<hr>
+浮动 + 定位
+  <div>
+    <span>1</span><span>2</span><span>3</span><span>4</span><span>搞定</span><span>6</span><span>7</span><span>8</span><span>9</span>
+  </div>
 </body>
 </html>
