@@ -309,71 +309,87 @@
           }
         }
       }
-      .lunbotu{
-        position: relative;
-        input{
-          position: absolute;
-          bottom:35px;
-          right:35px;
-          height:8px;
-          width:8px;
-          border-radius:10px;
-          border-color:#737475;
-          background-color:rgba(0,0,0,0.4);
-          &:checked ~ div{
-            background-image: url(https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/78d0483ed36158659fcf65a19a9b249a.jpeg?w=2452&h=920);
+
+      .slider{
+      width: 1228px;
+      height: 460px;
+      position: relative;
+      input{
+        display: none;
+        &:nth-child(1):checked ~ .slides:nth-of-type(1) img,
+        &:nth-child(2):checked ~ .slides:nth-of-type(2) img,
+        &:nth-child(3):checked ~ .slides:nth-of-type(3) img,
+        &:nth-child(4):checked ~ .slides:nth-of-type(4) img,{
+            opacity: 1;
           }
-          &:nth-of-type(2){
-            right: 55px;
-            &:checked ~ div{
-             background-image: url(https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/fc0f553382bb5143e667b284dfcf02db.jpg?thumb=1&w=1226&h=460&f=webp&q=90);
+
+        &:nth-child(1):checked ~ .slides:nth-of-type(1) label,
+        &:nth-child(2):checked ~ .slides:nth-of-type(2) label,
+        &:nth-child(3):checked ~ .slides:nth-of-type(3) label,
+        &:nth-child(4):checked ~ .slides:nth-of-type(4) label,{
+          z-index: 9;
+        }
+        &:nth-child(1):checked ~ div:last-child label:nth-child(1),
+        &:nth-child(2):checked ~ div:last-child label:nth-child(2),
+        &:nth-child(3):checked ~ div:last-child label:nth-child(3),
+        &:nth-child(4):checked ~ div:last-child label:nth-child(4),{
+          background-color: #666666;
+        }
+
+      }
+      .slides{
+        height: 100%;
+        position: absolute;
+        label{
+          width: 40px;
+          height:70px;
+          background-image: url(https://i1.mifile.cn/f/i/2014/cn/icon/icon-slides.png);
+          position: absolute;
+          top:0;
+          bottom:0;
+          margin:auto;
+          &:nth-child(1){
+            left:236px;
+            background-position: 81px;
+            &:hover{
+            background-position: 0px;
             }
           }
-          &:nth-of-type(3){
-            right: 75px;
-            &:checked ~ div{
-             background-image: url(https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/918820682e4a490221cfd92b24c14b86.jpg?thumb=1&w=1226&h=460&f=webp&q=90);
-            }
-          }
-        }
-        .left{
-          width: 41px;
-          height: 69px;
-          background-image: url(https://i1.mifile.cn/f/i/2014/cn/icon/icon-slides.png);
-          background-position: 82px;
-          position: absolute;
-          top: 195px;
-          left: 234px;
-          z-index: 10;
-          &:hover{
-            z-index: 9;
-            background-position: 0;
-          }
-        }
-        .right {
-          width: 41px;
-          height: 69px;
-          background-image: url(https://i1.mifile.cn/f/i/2014/cn/icon/icon-slides.png);
-          background-position: 41px;
-          position: absolute;
-          top: 195px;
-          right: 0;
-          z-index: 10;
-          &:hover{
-            z-index: 9;
+          &:nth-child(2){
+            right: 0;
+            background-position: 41px;
+            &:hover{
             background-position: -41px;
+            }
           }
-
         }
-        .lbt{
-          width: 1228px;
-          height: 460px;
-          background-size:100%;
-          background-image: url(https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/78d0483ed36158659fcf65a19a9b249a.jpeg?w=2452&h=920);
-
+        img{
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          transition: 1s;
+        }
+      }
+      div:last-child{
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        label{
+          float: left;
+          width:10px;
+          height:10px;
+          margin:3px;
+          border:1px solid #7B868E;
+          background-color: #353739;
+          border-radius:100px;
+          &:hover{
+            background-color: #666666;
+          }
         }
       }
     }
+    }
+
     section{
       width: 1228px;
       height: 170px;
@@ -800,17 +816,37 @@
           </ul></li>
       </ul>
     </aside>
-    <div class="lunbotu">
-      <label for="lb3" class="left"></label>
-      <label for="lb2" class="left"></label>
-      <label for="lb1" class="left"></label>
-      <label for="lb1" class="right"></label>
-      <label for="lb2" class="right"></label>
-      <label for="lb3" class="right"></label>
-      <input type="radio" checked  name="lbt" id="lb1" class="t1">
-      <input type="radio"  name="lbt" id="lb2" class="t2">
-      <input type="radio"  name="lbt" id="lb3" class="t3">
-      <div class="lbt"></div>
+    <div class="slider">
+      <input type="radio" checked name="slider" id="s1">
+      <input type="radio" name="slider" id="s2">
+      <input type="radio" name="slider" id="s3">
+      <input type="radio" name="slider" id="s4">
+      <div class="slides">
+        <label for="s4"></label>
+        <label for="s2"></label>
+        <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/78d0483ed36158659fcf65a19a9b249a.jpeg?w=2452&h=920" alt="">
+      </div>
+      <div class="slides">
+        <label for="s1"></label>
+        <label for="s3"></label>
+        <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/fc0f553382bb5143e667b284dfcf02db.jpg?thumb=1&w=1226&h=460&f=webp&q=90" alt="">
+      </div>
+      <div class="slides">
+        <label for="s2"></label>
+        <label for="s4"></label>
+        <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/918820682e4a490221cfd92b24c14b86.jpg?thumb=1&w=1226&h=460&f=webp&q=90" alt="">
+      </div>
+      <div class="slides">
+        <label for="s3"></label>
+        <label for="s1"></label>
+        <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/61bef947ca0b863003b3e68336192a3a.jpg?thumb=1&w=1226&h=460&f=webp&q=90" alt="">
+      </div>
+        <div>
+        <label for="s1"></label>
+        <label for="s2"></label>
+        <label for="s3"></label>
+        <label for="s4"></label>
+      </div>
     </div>
   </main>
   <section>
