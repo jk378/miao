@@ -202,35 +202,113 @@
 </script>
 
 <script id='ch0104/14'>
-
+  var x = prompt('重量')
+  var y = prompt('加急')
+  var z = Math.ceil((x - 1000) / 500)
+  if(x <= 1000 && y == 'y') console.log(8 + 5)
+  else if(x <= 1000 && y == 'n') console.log(8)
+  else if(x > 1000 && y == 'y') console.log(z * 4 + 8 + 5)
+  else console.log(z * 4 + 8)
 </script>
 
 <script id='ch0104/15'>
-
+  var x = prompt('x') * 1
+  var y = prompt('y') * 1
+  var z = prompt('z') * 1
+  if(x >= y && x >=z) console.log(x)
+  else if(y >= x && y >= z) console.log(y)
+  else console.log (z)
 </script>
 
 <script id='ch0104/16'>
-
+  var x = prompt('x') * 1
+  var y = prompt('y') * 1
+  var z = prompt('z') * 1
+  if( x + y > z && x + z > y && z + y > x) console.log('yes')
+  else console.log('no')
 </script>
 
 <script id='ch0104/17'>
-
+  var y = prompt('year')
+  if(y % 4 == 0 && y % 100 != 0 || y % 400 == 0) console.log('Y')
+  else console.log('N')
 </script>
 
 <script id='ch0104/18'>
-
+  var x = prompt('x')
+  var y = prompt('y')
+  if(x <= 1 && x >= -1 && y <= 1 && y >= -1) console.log('yes')
+  else console.log('no')
 </script>
 
 <script id='ch0104/19'>
-
+  var x = prompt('x') * 1
+  var y = prompt('y') * 1
+  var z = prompt('z')
+  if( y == 0) console.log('Divided by zero!')
+  else if(z != '+' && z != '-' && z != '*' && z != '/') console.log('Invalid operator!')
+  else if(z == '+') console.log( x + y )
+  else if(z == '-') console.log( x - y )
+  else if(z == '*') console.log( x * y )
+  else if(z == '/') console.log( x / y )
 </script>
 
 <script id='ch0104/20'>
-
+  var a = prompt('a') * 1
+  var b = prompt('b') * 1
+  var c = prompt('c') * 1
+  var x1 = ((-b + Math.sqrt(b * b - 4 * a *c)) / ( 2 * a )).toFixed(5)
+  var x2 = ((-b - Math.sqrt(b * b - 4 * a *c)) / ( 2 * a )).toFixed(5)
+  var x = b * b
+  var y = 4 * a * c
+  var s = (-b / (2 * a)).toFixed(5)
+  var i = (Math.sqrt(4 * a * c - b * b) / (2 * a)).toFixed(5)
+  if(x == y) console.log('x1=x2=' + x1)
+  else if(x > y) console.log('x1=' + x1 ,'x2=' + x2 )
+  else console.log('x1=' + s + '+' + i +'i','x2=' + s + '-' + i +'i')
 </script>
 
 <script id='ch0104/21'>
+  var n = prompt('n') * 1
+  var x = prompt('x') * 1
+  var y = prompt('y') * 1
+  var r = Math.floor( n - y / x )
+  if(r <= 0) console.log(0)
+  else console.log(r)
+</script>
+
+<script id='ch0105/1'>
+  var n =prompt('n')
+  var count = 0
+  for(var i = 0;i < n;i++){
+    count += prompt('年龄') * 1
+  }
+  console.log( (count / n).toFixed(2) )
+</script>
+
+<script id='ch0105/2'>
+  var i = 0
+  var counter = 0
+  while( i < 12){
+    counter += prompt('月末结余') * 1
+    i++
+  }
+  console.log('$'+ (counter / 12).toFixed(2) )
+</script>
+
+<script id='ch0105/3'>
 
 </script>
 
+<script id='ch0105/4'>
+
+</script>
+
+<script id='ch0105/5'>
+
+</script>
+
+<script id='ch0105/6'>
+
+</script>
 
