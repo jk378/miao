@@ -550,11 +550,38 @@
 </script>
 
 <script id='ch0105/23'>
-
+  var count = prompt()
+  var n = prompt()
+  var x
+  var a = 0
+  for(var i = 0;i < n;i++){
+    x = prompt()
+    if(count - x < 0) {
+      a++
+    } else {
+      count -= x
+    }
+  }
+  console.log(a)
 </script>
 
 <script id='ch0105/24'>
-
+  var n = prompt()
+  var s = 0
+  var x
+  var y
+  var c = 0
+  for(var i = 0;i < n;i++){
+    x = prompt()
+    y = prompt()
+    if(x >= 90 && x <= 140 && y >= 60 && y <= 90){
+      s++
+      c = s > c ? s : c
+    } else {
+      s = 0
+    }
+  }
+  console.log(c)
 </script>
 
 <script id='ch0105/25'>
