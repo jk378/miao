@@ -380,31 +380,89 @@
 </script>
 
 <script id='ch0105/11'>
-
+  var n = prompt() * 1
+  var n1 = 0
+  var n5 = 0
+  var n10 = 0
+  for(var i = 0; i < n;i++){
+    var m = prompt() * 1
+    if(m == 1) n1++
+    if(m == 5) n5++
+    if(m == 10) n10++
+  }
+  console.log(n1)
+  console.log(n5)
+  console.log(n10)
 </script>
 
 <script id='ch0105/12'>
-
+  var n = prompt() * 1
+  var m = prompt() * 1
+  var count = 0
+  for(var i = 0;i < n;i++){
+    var x = prompt()
+    if(m == x) count++
+  }
+  console.log(count)
 </script>
 
 <script id='ch0105/13'>
-
+  var a = prompt()
+  var n = prompt()
+  var product = 1
+  for(var i = 0;i < n;i++){
+    product *= a
+  }
+  console.log(product)
 </script>
 
 <script id='ch0105/14'>
-
+  var x = prompt()
+  var n = prompt()
+  for(var i = 0;i < n;i++){
+    x *= (1 + 0.001)
+  }
+  console.log((x.toFixed(4)) * 1)
 </script>
 
 <script id='ch0105/15'>
+  var R = prompt() / 100 + 1
+  var M = prompt() * 1
+  var Y = prompt() * 1
 
+  for(var i = 0;i < Y;i++){
+    M = M * R
+  }
+  console.log(Math.trunc(M))
 </script>
 
 <script id='ch0105/16'>
-
+  var N = prompt() * 1
+  var K = prompt() * 1 / 100
+  var sum = N
+  var price = 200
+  for(var i = 2;i < 20;i++){
+    sum += N
+    price = price * (1 + K)
+    if(sum - price > 0) {
+      console.log(i)
+      break
+    }
+  }
+  if(i == 20) console.log('Impossible')
 </script>
 
 <script id='ch0105/17'>
-
+  var k = prompt()
+  var a = 1
+  var b = 1
+  var c = 0
+  for(var i = 2;i < k;i++){
+    c = b + a
+    a = b
+    b = c
+  }
+  console.log(c)
 </script>
 
 <script id='ch0105/18'>
