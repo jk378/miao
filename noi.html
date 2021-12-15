@@ -511,11 +511,42 @@
 </script>
 
 <script id='ch0105/21'>
-
+  var n = prompt() * 1
+  var res
+  while(n != 1){
+    if (n % 2 == 1){
+      res = n * 3 + 1
+      console.log( '' + n + '*' +'3' + '+' + '1' + '=' + res )
+    } else{
+      res = n / 2
+      console.log('' + n + '/' + '2' + '=' + res)
+    }
+    n = res
+  }
+  console.log('End')
 </script>
 
 <script id='ch0105/22'>
-
+  var count = 0
+  var sum = 0
+  var xx = 0
+  var n
+  var s = 0
+  for(var i = 0;i < 12;i++){
+    count = 300 - prompt() * 1 + xx
+    if(count < 0 && s == 0) {
+      n = count
+      s++
+    }
+    if(count > 100) {
+      sum += count - count % 100
+      xx = count % 100
+      if(i == 11 && s < 1) console.log(sum * 1.2 + xx)
+    } else{
+      xx = count
+    }
+  }
+  if(s == 1) console.log( n )
 </script>
 
 <script id='ch0105/23'>
@@ -523,6 +554,18 @@
 </script>
 
 <script id='ch0105/24'>
+
+</script>
+
+<script id='ch0105/25'>
+
+</script>
+
+<script id='ch0105/26'>
+
+</script>
+
+<script id='ch0105/27'>
 
 </script>
 
