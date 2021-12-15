@@ -466,14 +466,63 @@
 </script>
 
 <script id='ch0105/18'>
+  var n = prompt()
+  var x = prompt()
+  var y = prompt()
+  var r = y / x
+  for(var i = 0;i < n - 1;i++){
+    var a = prompt()
+    var b = prompt()
+    var c = b / a
+    if(c - r > 0.05) console.log('better')
+    else if (r - c > 0.05) console.log('worse')
+    else console.log('same')
+  }
 
 </script>
 
 <script id='ch0105/19'>
-
+  var n = prompt()
+  var sum = 0
+  var a
+  var b
+  var l
+  var c
+  for(var i = 0;i < n;i++){
+    a = prompt()
+    b = prompt()
+    c = prompt()
+    l = Math.sqrt(a * a + b * b) * 2
+    sum = l / 50 + 1.5 * c
+    console.log(Math.ceil(sum))
+  }
 </script>
 
 <script id='ch0105/20'>
+  var h = prompt() * 1
+  var sum = 0
+  for(var i = 0;i < 10;i++){
+    sum += h
+    if(i == 9) console.log(sum.toFixed(4))
+    sum += h / 2
+    h = h / 2
+    if(i == 9) console.log(h.toFixed(7))
+  }
+</script>
+
+<script id='ch0105/21'>
+
+</script>
+
+<script id='ch0105/22'>
+
+</script>
+
+<script id='ch0105/23'>
+
+</script>
+
+<script id='ch0105/24'>
 
 </script>
 
