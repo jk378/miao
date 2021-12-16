@@ -197,7 +197,7 @@
   var y = (2 - 1.5 * (n - 3) * (n - 3)).toFixed(3)
   var z = (n / 2 - 1.5).toFixed(3)
   if( n < 5) console.log(x)
-  else if(n >= 5 && n < 10) console.log(y)
+  else if (n < 10) console.log(y)
   else console.log(z)
 </script>
 
@@ -604,7 +604,7 @@
     }
     var c9 = r9
     r9 = '' + r9 % 10 + Math.floor((r9 % 100) / 10) + Math.floor((r9 / 100))
-    if(r7 == r9) console.log( i , r7 ,c9)
+    if(r7 == r9) console.log( i , c9 ,r7)
   }
 </script>
 
