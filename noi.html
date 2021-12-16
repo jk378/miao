@@ -585,7 +585,26 @@
 </script>
 
 <script id='ch0105/25'>
-
+  for(var i = 50;i <  500;i++){
+    var a7 = i
+    var a9 = i
+    var yushu7 = a7 % 7
+    var yushu9 = a9 % 9
+    var r7 = ''
+    var r9 = ''
+    while(a7 !== 0){
+      r7 += yushu7
+      a7 = Math.floor((a7 - yushu7) / 7)
+      yushu7 = a7 % 7
+    }
+    while(a9 !== 0){
+      r9 += yushu9
+      a9 = Math.floor((a9 - yushu9) / 9)
+      yushu9 = a9 % 9
+    }
+    r9 = '' + r9 % 10 + Math.floor((r9 % 100) / 10) + Math.floor((r9 / 100))
+    if(r7 == r9) console.log(i)
+  }
 </script>
 
 <script id='ch0105/26'>
@@ -593,6 +612,22 @@
 </script>
 
 <script id='ch0105/27'>
+
+</script>
+
+<script id='ch0105/28'>
+
+</script>
+
+<script id='ch0105/29'>
+
+</script>
+
+<script id='ch0105/30'>
+
+</script>
+
+<script id='ch0105/31'>
 
 </script>
 
