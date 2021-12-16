@@ -456,7 +456,7 @@
   var k = prompt()
   var a = 1
   var b = 1
-  var c = 0
+  var c
   for(var i = 2;i < k;i++){
     c = b + a
     a = b
@@ -645,15 +645,72 @@
 </script>
 
 <script id='ch0105/29'>
+  var n = String(prompt())
+  var n1 = n * 1
+  var res = ''
 
+  for(var i = n.length;i > 0;i--){
+    if(n1 > 0){
+      res = res + n1 % 10
+      n1 =  n1 - n1 % 10
+      n1 = n1 / 10
+    } else{
+      while(n1 % 10 == 0){
+        n1 = n1 /10
+      }
+        res = res + n1 % 10 * -1
+        n1 =  n1 - n1 % 10
+        n1 = n1 / 10
+        if(n1 == 0) {
+          res *= -1
+          break
+        }
+    }
+  }
+  console.log(res)
 </script>
 
 <script id='ch0105/30'>
-
+  var m = prompt() * 1
+  var k = prompt() * 1
+  var count = 0
+  if(m % 19 == 0){
+    while(m > 0){
+      if(m % 10 == 3){
+        count++
+        if(count > k) console.log('NO')
+      }
+      m = (m - m % 10) / 10
+    }
+    if(count == k) console.log('YES')
+  } else{
+    console.log('NO')
+  }
 </script>
 
 <script id='ch0105/31'>
 
 </script>
+
+<script id='ch0105/32'>
+
+</script>
+
+<script id='ch0105/33'>
+
+</script>
+
+<script id='ch0105/34'>
+
+</script>
+
+<script id='ch0105/35'>
+
+</script>
+
+<script id='ch0105/36'>
+
+</script>
+
 
 
