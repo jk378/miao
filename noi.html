@@ -602,20 +602,45 @@
       a9 = Math.floor((a9 - yushu9) / 9)
       yushu9 = a9 % 9
     }
+    var c9 = r9
     r9 = '' + r9 % 10 + Math.floor((r9 % 100) / 10) + Math.floor((r9 / 100))
-    if(r7 == r9) console.log(i)
+    if(r7 == r9) console.log( i , r7 ,c9)
   }
 </script>
 
 <script id='ch0105/26'>
-
+  var n = prompt()
+  var count = 0
+  for(var i = 0;i < n;i++){
+    var x = prompt()
+    var r = x % 10 - Math.floor(x / 1000) - Math.floor((x - Math.floor(x / 1000) * 1000) / 100) -
+    Math.floor((x - Math.floor(x / 1000) * 1000 - Math.floor((x - Math.floor(x / 1000) * 1000) / 100) * 100 ) /10 )
+    if(r > 0) count++
+  }
+  console.log(count)
 </script>
 
 <script id='ch0105/27'>
-
+  var k = prompt()
+  var sn = 1
+  var i = 1
+  while( sn <= k){
+    sn += (1 / (1 + i))
+    i++
+  }
+  console.log(i)
 </script>
 
 <script id='ch0105/28'>
+  var n = String(prompt())
+  var n1 = n * 1
+  var res = ''
+  for(var i = n.length;i > 0;i--){
+    res = res + n1 % 10 + ' '
+    n1 =  n1 - n1 % 10
+    n1 = n1 / 10
+  }
+  console.log(res.trim())
 
 </script>
 
