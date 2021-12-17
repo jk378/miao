@@ -765,6 +765,32 @@
 </script>
 
 <script id='ch0105/37'>
+  var M = prompt() * 1
+  var N = prompt() * 1
+  var X = prompt() * 1
+  while(X > 0){
+    if(X * N < M) M = X * N
+    X = X - Math.ceil(M / N)
+    var n = N
+    for(var i = M; i > 0;i -= n){
+      if(i >= n)  N = N + 1
+    }
+  }
+  console.log(N)
+// debugger
+//   while(X > 0){
+//     if(X * N < M) M = X * N
+//     X = X - Math.ceil(M / N)
+//     var count
+//     for(var i = M; i > 0;i -= count){
+//       count = 0
+//       if(i >= N){
+//         count += N
+//         N = N + 1
+//       } else count += 1
+//     }
+//   }
+//   console.log(N)
 
 
 </script>
