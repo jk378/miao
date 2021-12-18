@@ -13,7 +13,7 @@ for(var i=0;i<100;i++){
     console.log('buzz')
   } else console.log(a)
 }
-chrome.exe --proxy-server=http://10.3.3.3:55555
+// chrome.exe --proxy-server=http://10.3.3.3:55555
 function min(a,b){
   return a>b ? b : a
 }
@@ -216,8 +216,5 @@ function  d2b (d){
   }
   return r
 }
-
-
-
 
 
