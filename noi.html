@@ -983,15 +983,118 @@
   console.log(m === res * 1)
 </script>
 
+<script id='weekday'>//weekday: 输入年份与月份，输出这个月的第一天是周几（视具体设定，周一可以用1或0表示）
 
+</script>
 
-<!-- 以下所有“是否”的题目都输出YES/NO
+<script id='complete-number'> //complete-number: 输入一个数，判断它是否是完全数（自行查相关概念）
+  var n = prompt() * 1
+  var sum = 1
+  for(var i = 2;i * i <= n;i++ ){
+    if(n % i == 0) sum = sum + i + n / i
+  }
+  if(n != 1) console.log(sum == n)
+  else console.log(false)
+</script>
 
-weekday: 输入年份与月份，输出这个月的第一天是周几（视具体设定，周一可以用1或0表示）
-complete-number: 输入一个数，判断它是否是完全数（自行查相关概念）
-complete-numbers: 输出1000以内的完全数
-prime: 输入一个数，判断它是否是素数
-primes: 输出100以内的素数
-itoa: 给定一个整数，将其转换为字符串：不能使用String等现成函数，但可以使用非此功能的其它函数，也不能利用任意运算符的自动类型转换
-lcf&lcm: 输入两个数，输出它们的最大公约数和最小公倍数
-sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能使用Math.sqrt -->
+<script id='complete-numbers'>//complete-numbers: 输出1000以内的完全数
+  for(var j = 2;j < 1000;j++){
+    var sum = 1
+    for(var i = 2;i * i <= j;i++ ){
+      if(j % i == 0) sum = sum + i + j / i
+    }
+    if(sum == j) console.log(j)
+  }
+</script>
+
+<script id='prime'> //prime: 输入一个数，判断它是否是素数
+  var n = prompt() * 1
+  var count = 0
+  if(n == 1){
+    count++
+    console.log(false)
+  }
+  for(i = 2;i * i <= n;i++){
+    if(n % i == 0) {
+      console.log(false)
+      count++
+      break
+    }
+  }
+  if(!count) console.log(true)
+</script>
+
+<script id='primes'> //primes: 输出100以内的素数
+  for(var i = 2;i < 100;i++){
+    var count = 0
+    for(j = 2;j * j <= i;j++){
+      if(i % j == 0) {
+        count++
+        break
+      }
+    }
+    if(!count) console.log(i)
+  }
+</script>
+
+<script id='itoa'>//itoa: 给定一个整数，将其转换为字符串：不能使用String等现成函数，但可以使用非此功能的其它函数，也不能利用任意运算符的自动类型转换
+  var n = prompt()
+
+</script>
+
+<script id='lcf&lcm'> //lcf&lcm: 输入两个数，输出它们的最大公约数和最小公倍数
+  var a = prompt() * 1  // 更相减损术
+  var b = prompt() * 1
+  if(a < b) {
+    a = a + b
+    b = a - b
+    a = a - b
+  }
+  var m = a * b
+  var n = b
+  while(a != b){
+    if(a < b) {
+      a = a + b
+      b = a - b
+      a = a - b
+    }
+    var d = a - b
+    if(b - d == 0) n = d
+    a = b
+    b = d
+  }
+  console.log(n , m / n)
+  // var a = prompt() * 1  //辗转相除法
+  // var b = prompt() * 1
+  // if(a < b) {
+  //   a = a + b
+  //   b = a - b
+  //   a = a - b
+  // }
+  // var m = a * b
+  // var n = b
+  // while(a % b != 0){
+  //   var d = a % b
+  //   if(b % d == 0){
+  //     n = d
+  //   }
+  //   a = b
+  //   b = d
+  // }
+  // console.log(n , m / n)
+</script>
+
+<script id=''> //sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能使用Math.sqrt
+  var n = prompt() * 1
+  var i = 0
+  while(i * i < n){
+    i++
+  }
+  for(var j = i;j > i - 1;j -= 0.001){
+    var m = j * j
+    if(m <= n)  {
+      console.log(j.toFixed(3) * 1)
+      break
+    }
+  }
+</script>
