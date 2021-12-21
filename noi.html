@@ -951,13 +951,14 @@
     sum += d ** 3
     n = (n - d) / 10
   }
-  console.log(m == sum)
+  if(m == sum) console.log(YES)
+  else console.log(NO)
 
 </script>
 
 <script id='narcissistics'>
   // narcissistics: 输出10000以内的水仙花数
-  for(var i = 0;i < 10000;i++){
+  for(var i = 2;i < 10000;i++){
     var sum = 0
     var m = i
     var d
@@ -980,10 +981,20 @@
     res += d
     n = (n - d) / 10
   }
-  console.log(m === res * 1)
+  if(m === res * 1) console.log(YES)
+  else console.log(NO)
 </script>
 
 <script id='weekday'>//weekday: 输入年份与月份，输出这个月的第一天是周几（视具体设定，周一可以用1或0表示）
+  // var year = prompt() * 1
+  // var month = prompt() * 1
+  // var day = prompt() * 1
+  // var year1 = 2021
+  // var month1 = 12
+  // var day1 = 20
+  // var n = 1
+
+  // for(var i = )
 
 </script>
 
@@ -993,8 +1004,8 @@
   for(var i = 2;i * i <= n;i++ ){
     if(n % i == 0) sum = sum + i + n / i
   }
-  if(n != 1) console.log(sum == n)
-  else console.log(false)
+  if(n != 1 && sum == n) console.log(YES)
+  else console.log(NO)
 </script>
 
 <script id='complete-numbers'>//complete-numbers: 输出1000以内的完全数
@@ -1012,16 +1023,16 @@
   var count = 0
   if(n == 1){
     count++
-    console.log(false)
+    console.log(NO)
   }
   for(i = 2;i * i <= n;i++){
     if(n % i == 0) {
-      console.log(false)
+      console.log(NO)
       count++
       break
     }
   }
-  if(!count) console.log(true)
+  if(!count) console.log(YES)
 </script>
 
 <script id='primes'> //primes: 输出100以内的素数
@@ -1043,7 +1054,7 @@
 </script>
 
 <script id='lcf&lcm'> //lcf&lcm: 输入两个数，输出它们的最大公约数和最小公倍数
-  var a = prompt() * 1  // 更相减损术
+  var a = prompt() * 1
   var b = prompt() * 1
   if(a < b) {
     a = a + b
