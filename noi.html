@@ -957,8 +957,7 @@
 
 </script>
 
-<script id='narcissistics'>
-  // narcissistics: 输出10000以内的水仙花数
+<script id='narcissistics'>  // narcissistics: 输出10000以内的水仙花数
   for(var i = 2;i < 10000;i++){
     var sum = 0
     var m = i
@@ -987,16 +986,26 @@
 </script>
 
 <script id='weekday'>//weekday: 输入年份与月份，输出这个月的第一天是周几（视具体设定，周一可以用1或0表示）
-  // var year = prompt() * 1
-  // var month = prompt() * 1
+  var year = prompt() * 1
+  var month = prompt() * 1
   // var day = prompt() * 1
-  // var year1 = 2021
-  // var month1 = 12
-  // var day1 = 20
-  // var n = 1
-
-  // for(var i = )
-
+  var lyear = 0
+  for(let i = 1;i < year;i++){
+    if(i % 400 == 0 || i % 4 == 0 && i % 100 !== 0) lyear++
+  }
+  var sumyear = (year - 1) * 365  + lyear
+  var mday = 0
+  for(let i = 1;i < month;i++){
+    if(i == 1 || i == 3 || i == 5 || i == 7 || i == 8 || i == 10 || i == 12) mday += 31
+    else if (i == 2){
+      if(year % 400 == 0 || year % 4 == 0 && year % 100 != 0) mday += 29
+      else mday += 28
+    } else mday += 30
+  }
+  var sum = sumyear + mday //+ day
+  var result = sum % 7 + 1
+  if(result == 0) result = 7
+  console.log(result)
 </script>
 
 <script id='complete-number'> //complete-number: 输入一个数，判断它是否是完全数（自行查相关概念）
@@ -1107,6 +1116,7 @@
 </script>
 
 <script id='sqrt'> //sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能使用Math.sqrt
+
   var n = prompt() * 1
   var i = 0
   while(i * i < n){
