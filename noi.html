@@ -793,19 +793,20 @@
 </script>
 
 <script id='ch0105/38'>
-  var n = prompt() * 1
-  for(var i = 0;i < n;i++){
-    var m = prompt() * 1
-    if(m == 0) {
-      var xx = prompt()
+  var N = prompt() * 1
+  for (var i1 = 0, n = 0; i1 < N; i1++){
+    n = Number(prompt('n'))
+    if (n == 0) {
       console.log(0)
-    } else
-    for(var j = m; j >= 0;j--){
-      var c = prompt() * 1
-      if(j != 0) console.log(c * j)
+    }
+    for (var i2 = 0, cn = 0, a = n + 1; i2 < (n + 1); i2++){
+      cn = Number(prompt('cn'))
+      if (i2 != n){
+        a = a - 1
+        console.log(cn * a)
+      }
     }
   }
-
 </script>
 
 <script id='ch0105/39'>
@@ -951,8 +952,8 @@
     sum += d ** 3
     n = (n - d) / 10
   }
-  if(m == sum) console.log(YES)
-  else console.log(NO)
+  if(m == sum) console.log('YES')
+  else console.log('NO')
 
 </script>
 
@@ -981,8 +982,8 @@
     res += d
     n = (n - d) / 10
   }
-  if(m === res * 1) console.log(YES)
-  else console.log(NO)
+  if(m === res * 1) console.log('YES')
+  else console.log('NO')
 </script>
 
 <script id='weekday'>//weekday: 输入年份与月份，输出这个月的第一天是周几（视具体设定，周一可以用1或0表示）
@@ -1004,8 +1005,8 @@
   for(var i = 2;i * i <= n;i++ ){
     if(n % i == 0) sum = sum + i + n / i
   }
-  if(n != 1 && sum == n) console.log(YES)
-  else console.log(NO)
+  if(n != 1 && sum == n) console.log('YES')
+  else console.log('NO')
 </script>
 
 <script id='complete-numbers'>//complete-numbers: 输出1000以内的完全数
@@ -1023,16 +1024,16 @@
   var count = 0
   if(n == 1){
     count++
-    console.log(NO)
+    console.log('NO')
   }
   for(i = 2;i * i <= n;i++){
     if(n % i == 0) {
-      console.log(NO)
+      console.log('NO')
       count++
       break
     }
   }
-  if(!count) console.log(YES)
+  if(!count) console.log('YES')
 </script>
 
 <script id='primes'> //primes: 输出100以内的素数
@@ -1049,8 +1050,18 @@
 </script>
 
 <script id='itoa'>//itoa: 给定一个整数，将其转换为字符串：不能使用String等现成函数，但可以使用非此功能的其它函数，也不能利用任意运算符的自动类型转换
-  var n = prompt()
-
+  var n = prompt() * 1
+  var m = n
+  var d
+  var res = ''
+  var i = 0
+  while(n > 0){
+    d = n % 10
+    res = d + res
+    i++
+    n = (n - d) / 10
+  }
+  console.log(res)
 </script>
 
 <script id='lcf&lcm'> //lcf&lcm: 输入两个数，输出它们的最大公约数和最小公倍数
