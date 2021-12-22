@@ -1058,7 +1058,7 @@
   }
 </script>
 
-<script id='itoa'>//itoa: 给定一个整数，将其转换为字符串：不能使用String等现成函数，但可以使用非此功能的其它函数，也不能利用任意运算符的自动类型转换
+<script id='itob'>//itob: 给定一个整数，将其转换为字符串：不能使用String等现成函数，但可以使用非此功能的其它函数，也不能利用任意运算符的自动类型转换
   var n = prompt() * 1
   var m = n
   var d
@@ -1117,16 +1117,33 @@
 
 <script id='sqrt'> //sqrt: 输入一个数，求它的平方根，精确到小数点后3位，不能使用Math.sqrt
 
-  var n = prompt() * 1
-  var i = 0
-  while(i * i < n){
-    i++
-  }
-  for(var j = i;j > i - 1;j -= 0.001){
-    var m = j * j
-    if(m <= n)  {
-      console.log(j.toFixed(3) * 1)
-      break
+  console.log( sq(prompt() * 1))
+
+  function sq(n){
+    var i = n / 2
+    var left = 0
+    var right = n
+    while( Math.abs(i * i - n) >= 0.0001){
+      if(i * i > n) {
+        right = i
+        i = (i + left) / 2
+
+      } else {
+        left = i
+        i = (i + right) /2
+      }
     }
+    return i.toFixed(3) * 1
   }
+  // var i = 0
+  // while(i * i < n){
+  //   i++
+  // }
+  // for(var j = i;j > i - 1;j -= 0.001){
+  //   var m = j * j
+  //   if(m <= n)  {
+  //     console.log(j.toFixed(3) * 1)
+  //     break
+  //   }
+  // }
 </script>
