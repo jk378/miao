@@ -224,5 +224,23 @@ var jk378 = {
     }
     return res
   },
+  difference : function difference(array,...values){
+    var map = {}
+    var res = []
+    for(var i = 0;i < values.length;i++){
+      for(var j = 0;j < values[i].length;j++){
+        map[values[i][j]] = 1
+      }
+    }
+    for(var i = 0;i < array.length;i++){
+      if(array[i] in map) continue
+      res.push(array[i])
+    }
+    return res
+  } ,
+  nth : function nth(array, n = 0){
+    return n >= 0 ? array[n] : array[array.length + n]
+  },
+
 
 }
