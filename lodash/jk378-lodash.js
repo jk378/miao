@@ -171,5 +171,58 @@ var jk378 = {
     }
     return res
   },
+  isBoolean : function isBoolean (value){
+    if(value === true || value === false) return true
+    return false
+  },
+  isNaN : function isNaN(value){
+    if(value !== value) return true
+    return false
+  },
+  toArray : function toArray(value){
+    if(typeof(value) === 'number' || !value) return []
+    var res = []
+    if(typeof(value) === 'string' || Array.isArray(value)){
+      for(var i = 0;i < value.length;i++){
+        res.push(value[i])
+      }
+      return res
+    }
+    for(var key in value){
+      res.push(value[key])
+    }
+    return res
+  },
+  max : function max(array) {
+    if(array.length == 0) return undefined
+    var max = array[0]
+    for(var i = 1;i < array.length;i++){
+      max = array[i] > max ? array[i] : max
+    }
+    return max
+  },
+  sum : function sum(array) {
+    return array.reduce( (x,y) => x + y)
+  },
+  repeat : function repeat(string = '', n = 1){
+    var res = ''
+    for(var i = 0; i < n;i++){
+      res += string
+    }
+    return res
+  },
+  range : function range(start = 0, end ,step = 1){
+    if(arguments.length == 1){
+      start = 0
+      end = arguments[0]
+    }
+    var res = []
+    if(step == 0) return new Array(end - start).fill(start)
+    if(end < start) step *= - 1
+    for(var i = start; start > end ? i > end : i < end; i += step){
+      res.push(i)
+    }
+    return res
+  },
 
 }
