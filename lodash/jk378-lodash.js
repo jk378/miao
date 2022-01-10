@@ -86,5 +86,37 @@ var jk378 = {
   flattenDepth : function flattenDepth(array, depth = 1){
 
   },
+  fromPairs : function fromPairs(pairs) {
+    var res = {}
+    for(var i = 0;i < pairs.length;i++){
+      res[pairs[i][0]] = pairs[i][1]
+    }
+    return res
+  },
+  head : function head(array){
+    return array[0]
+  },
+  indexOf : function indexOf(array, value, fromIndex=0){
+    if(fromIndex < 0) fromIndex = array.length + fromIndex
+    for(var i = fromIndex;i < array.length;i++){
+      if(array[i] == value) return i
+    }
+    return -1
+  },
+  initial : function initial(array){
+    var res = []
+    for(var i = 0;i < array.length - 1;i++){
+      res.push(array[i])
+    }
+    return res
+  },
+  join : function join(array, separator = ','){
+    if(array.length == 0) return ''
+    var res = '' + array[0]
+    for(var i = 1;i < array.length;i++){
+      res = res + separator + array[i]
+    }
+    return res
+  },
 
 }
