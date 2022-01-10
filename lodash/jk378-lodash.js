@@ -22,8 +22,37 @@ var jk378 = {
       res.push(t)
     }
     return res
-  }
+  },
+  concat : function concat(array){
+    var res = array.slice()
+    if(arguments.length == 1) return array
+    for(var i = 1;i < arguments.length;i++){
+      if(Array.isArray(arguments[i])){
+        res.push(...arguments[i])
+      } else res.push(arguments[i])
+    }
+    return res
+  },
 
+
+  drop : function drop(array, n = 1){
+    var res = []
+    var len = array.length
+    if(n >= len) return res
+    for(var i = n;i < len;i++){
+      res.push(array[i])
+    }
+    return res
+  },
+  dropRight : function dropRight(array, n = 1){
+    var res = []
+    var len = array.length
+    if(!n) return array
+    for(var i = 0;i < len - n;i++){
+      res.push(array[i])
+    }
+    return res
+  },
 
 
 }
