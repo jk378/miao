@@ -176,6 +176,7 @@ var jk378 = {
     return false
   },
   isNaN : function isNaN(value){
+    if(typeof(value) === 'object' && value !== value) return true
     if(value !== value) return true
     return false
   },
@@ -218,7 +219,7 @@ var jk378 = {
     }
     var res = []
     if(step == 0) return new Array(end - start).fill(start)
-    if(end < start) step *= - 1
+    if(end < start  && step > 0) step *= - 1
     for(var i = start; start > end ? i > end : i < end; i += step){
       res.push(i)
     }
