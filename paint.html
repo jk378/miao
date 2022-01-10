@@ -60,19 +60,16 @@
   dot(42,42)      // 在 坐标 (42, 42) 画出一个点
 
   for(let i = 20;i < 80;i++){
-    let y = 20
-    dot(i,y)
+    dot(i,20)
   }       // * 画一条实线
 
   for(let i = 20; i < 80;i++ ){
-    let y = 40
-    if(i % 2)dot(i,y)
+    if(i % 2)dot(i,40)
   }     // * 画一条一个实点一个空点的虚线
 
   for(let i = 20; i < 80;i+=4 ){
-    let y = 60
-    dot(i,y)
-    dot(i + 1,y)
+    dot(i,60)
+    dot(i + 1,60)
   }  // * 画一条两个实点两个空点的虚线
 
   for(let i = 20; i < 80;i+=5 ){
@@ -83,16 +80,16 @@
   }   // * 画一条三个实点两个空点的虚线
 
   for(let x = 20; x < 80;x++ ){
-      let y = x
-      dot(x,y)
+
+      dot(x,x)
   }      // * 画一条45度的斜线
 
-  for(let x = 20; x < 80;x++ ){
-      let y = x * Math.sqrt(3) +50
+  for(let y = 20; y < 80;y++ ){
+      let x = y / Math.sqrt(3) +50
       dot(x,y)
   }      // * 画一条30度的斜线（与x轴或y轴的夹角呈30度）
 
-  for(let x = 0; x <= 500;x++ ){
+  for(let x = 0; x < 500;x++ ){
     let y = 0.8 * x
     dot(x,y)
   }       // * 画一条跨越画布左上角和右下角的对角线
@@ -135,7 +132,7 @@
     for(let g = 0;g < 100;g++){
       let x = r
       let y = g
-      let rgb = 'rgb' + '('  + r*2 + ',' + g*2 + ','+'0' + ')'
+      let rgb = 'rgb' + '('  + r*2.55 + ',' + g*2.55 + ','+'0' + ')'
       dot(x + 400,y + 300,rgb)
     }
   }

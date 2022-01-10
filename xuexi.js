@@ -1,3 +1,40 @@
+var partition = function (s) {
+  const res = [];
+
+  function dfs(temp, start) {
+      if (start == s.length) {
+          res.push(temp.slice());
+          return;
+      }
+      for (let i = start; i < s.length; i++) {
+          if (isPali(s, start, i)) {
+              temp.push(s.substring(start, i + 1));
+              dfs(temp, i + 1);
+              temp.pop();
+          }
+      }
+  }
+  dfs([], 0);
+  return res;
+};
+
+function isPali(s, l, r) {
+  while (l < r) {
+      if (s[l] != s[r]) {
+          return false;
+      }
+      l++;
+      r--;
+  }
+  return true;
+}
+
+
+
+
+
+
+
 var r = ''
 for(var i=0;i<7;i++){
   console.log(r+='#')
@@ -122,59 +159,14 @@ function reverseArray(array){
   return res
 }
 
-
-function array2list (ary){
-  var nodes = []
-  for(var i = 0;i < ary.length;i++){
-      var node = {}
-      node.value = ary[i]
-      node.rest = null
-      nodes.push(node)
+function reverseArrayInPlace(array){
+  var len = array.length
+  for(var i = 0;i < (len >> 1);i++){
+    var temp = array[i]
+    array[i] = array[len - i - 1]
+    array[len - i - 1] = temp
   }
-  for(var i = 0;i < ary.length-1  ;i++){
-      nodes[i].rest = nodes[i+1]
-  }
-  return nodes[0]
-}
-
-function arrtList(arr){
-  var head = {value : arr[0],rest : null}
-  var phead = head
-  var c
-  for (var i = 1;i < arr.length;i++){
-    c = {value:arr[i],rest :null }
-    phead.rest = c
-    phead = c
-  }
-  return head
-}
-
-function listToArray(list){
-  var res = []
-  while(list){
-    res.push(list.value)
-    list = list.rest
-  }
-  return res
-}
-
-function prepend(a, list){
-  return {value:a,rest:list}
-}
-
-function nth(list, a){
-  var count = 0
-  while(count < a){
-    if(list){
-      list = list.rest
-      count++
-    } else return undefined
-  }
-  return list.value
-}
-
-var deepEqual (a,b){
-
+  return array
 }
 
 var Stack =function() {
