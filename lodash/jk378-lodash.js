@@ -118,5 +118,10 @@ var jk378 = {
     }
     return res
   },
+  last : function last(array){
+    return array[array.length - 1]
+  },
+  lastIndexOf : function lastIndexOf(array, value, fromIndex = array.length - 1){
 
+  },
 }
