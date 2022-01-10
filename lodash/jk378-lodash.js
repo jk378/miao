@@ -54,5 +54,37 @@ var jk378 = {
     return res
   },
 
+  fill : function fill(array, value, start = 0, end = array.length){
+    for(var i = start; i < end;i++){
+      array[i] = value
+    }
+    return array
+  },
+  findIndex : function findIndex(array, predicate = identity,fromIndex = 0){
+
+  },
+  flatten : function flatten(array){
+    var res = []
+    for(var i = 0;i < array.length;i++){
+      if(Array.isArray(array[i])){
+        for(var j = 0; j < array[i].length;j++){
+          res.push(array[i][j] )
+        }
+      } else(
+        res.push(array[i])
+      )
+    }
+    return res
+  },
+  flattenDeep : function flattenDeep(array, res = []){
+    for(var i = 0;i < array.length;i++){
+      if(!Array.isArray(array[i])) res.push(array[i])
+      else flattenDeep(array[i],res)
+    }
+    return res
+  },
+  flattenDepth : function flattenDepth(array, depth = 1){
+
+  },
 
 }
