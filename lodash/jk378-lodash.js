@@ -122,6 +122,54 @@ var jk378 = {
     return array[array.length - 1]
   },
   lastIndexOf : function lastIndexOf(array, value, fromIndex = array.length - 1){
-
+    for(var i = fromIndex;i >= 0;i--){
+      if(array[i] === value) return i
+    }
+    return -1
   },
+  reverse : function reverse(array){
+    var len = array.length
+    for(var i = 0;i < len >> 1;i++){
+      var t = array[i]
+      array[i] = array[len - 1 - i]
+      array[len - 1 - i] = t
+    }
+    return array
+  },
+  uniq : function uniq(array){
+    var res = []
+    var map = {}
+    for(var i = 0;i < array.length;i++){
+      if(array[i] in map) continue
+      else{
+        map[array[i]] = 1
+        res.push(array[i])
+      }
+    }
+    return res
+  },
+  without : function without(array){
+    var map = {}
+    var res = []
+    for(var i = 1;i < arguments.length;i++){
+      map[arguments[i]] = 1
+    }
+    for(var i = 0;i < array.length;i++){
+      if(array[i] in map) continue
+      res.push(array[i])
+    }
+    return res
+  },
+  zip : function zip (){
+    var res = []
+
+    for(var i = 0;i < arguments[0].length;i++){
+      res[i] = []
+      for(var j = 0;j < arguments.length;j++){
+        res[i][j] = arguments[j][i]
+      }
+    }
+    return res
+  },
+
 }
