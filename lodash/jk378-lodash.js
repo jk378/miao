@@ -13,7 +13,17 @@ var jk378 = {
       }
     }
     return res
+  },
+  compact : function compact(array){
+    var res = []
+    for(var i = 0;i < array.length;i++){
+      var t = array[i]
+      if(!t || t !== t) continue
+      res.push(t)
+    }
+    return res
   }
+
 
 
 }
