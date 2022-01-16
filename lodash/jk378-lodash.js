@@ -33,8 +33,6 @@ var jk378 = {
     }
     return res
   },
-
-
   drop : function drop(array, n = 1){
     var res = []
     var len = array.length
@@ -84,7 +82,13 @@ var jk378 = {
     return res
   },
   flattenDepth : function flattenDepth(array, depth = 1){
-
+    if(depth == 0) return [...array]
+    var res = []
+    for(var i = 0;i < array.length;i++){
+      if(Array.isArray(array[i])) res.push(...flattenDepth(array[i],depth - 1))
+      else res.push(array[i])
+    }
+    return res
   },
   fromPairs : function fromPairs(pairs) {
     var res = {}
@@ -242,6 +246,17 @@ var jk378 = {
   nth : function nth(array, n = 0){
     return n >= 0 ? array[n] : array[array.length + n]
   },
-
+  groupBy : function groupBy(array, predicate) {
+    return array.reduce((grouped, it) => {
+      var action
+      if(typeof(predicate) == 'function') action = predicate(it)
+      else action = it[predicate]
+      if(!grouped[action]){
+        grouped[action] = []
+      }
+      grouped[action].push(it)
+      return grouped
+    },{})
+  },
 
 }
