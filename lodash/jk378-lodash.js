@@ -258,5 +258,41 @@ var jk378 = {
       return grouped
     },{})
   },
+  flatMap : function flatMap(ary, predicate = it => it){
+    var res = []
+    return jk378.flatten(ary.map( it => predicate(it)))
+  },
+  toPath : function toPath(val){
+    if(typeof val === 'string') return val.split('.').flatMap( it => it.split('[')).flatMap( it => it.split(']'))
+    .filter(it =>it)
+    else return val
+  },
+  property : function property(path){
+    return function(obj){
+      var res = obj
+      var t = jk378.toPath(path)
+      for(var i = 0;i < t.length;i++){
+        res = res[t[i]]
+      }
+      return res
+    }
+  },
+  matches : function matches(source){
+    return function(obj){
+      for(var key in source){
+        if(source[key] !== obj[key]) return false
+      }
+      return true
+    }
+  },
+  isMatch : function isMatch(obj, src){
+    for(var key in src){
+      if(typeof src[key] === 'object'){
+        return isMatch(obj[key], src[key])
+      }
+      if(src[key] !== obj[key]) return false
+    }
+    return true
+  },
 
 }
