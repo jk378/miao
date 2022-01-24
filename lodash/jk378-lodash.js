@@ -330,6 +330,16 @@ var jk378 = {
     }
     return res
   },
-
+  has : function has(obj,path){
+    var paths = jk378.toPath(path)
+    for(var i = 0;i < paths.length;i++){
+      if( obj && (paths[i] in obj)){
+        obj = obj[path[i]]
+      } else{
+        return false
+      }
+    }
+    return true
+  },
 
 }
