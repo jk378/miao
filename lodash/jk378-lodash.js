@@ -321,6 +321,15 @@ var jk378 = {
       return !func(...args)
     }
   },
+  get : function get(obj, path , defaultValue = 'default'){
+    var paths = jk378.toPath(path)
+    var res = obj
+    for(var i = 0;i < paths.length;i++){
+      if(res)res = res[paths[i]]
+      else return defaultValue
+    }
+    return res
+  },
 
 
 }
