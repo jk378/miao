@@ -294,5 +294,33 @@ var jk378 = {
     }
     return true
   },
+  constant: function constant(value){
+    return function(){
+      var res = value
+      return res
+    }
+  },
+  times : function times(n, predicate = it=>it){
+    var res = []
+    for(var i = 0;i < n;i++){
+      res.push(predicate(i))
+    }
+    return res
+  },
+  once: function once (func){
+    var res = null
+    return function(...args){
+      if(!res) {
+        res = func(...args)
+      }
+      return res
+    }
+  },
+  negate : function negate(func){
+    return function (...args){
+      return !func(...args)
+    }
+  },
+
 
 }
