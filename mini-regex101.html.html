@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mini-regex101</title>
+  <style>
+    strong:nth-child(odd){
+      background-color: #D2E7FB;
+    }
+    strong:nth-child(even){
+      background-color: #9AC9F7;
+    }
+    strong:empty{
+      display: inline-block;
+      width:4px;
+      background-color: red;
+      height: 1em;
+      margin-left: -2px;
+      margin-right: -2px;
+    }
+    div{
+      width: 600px;
+      font-size: 40px;
+    }
+    #reStr{
+      width: 500px;
+      height: 30px;
+      font-size: 24px;
+    }
+    .a1{
+      position: relative;
+    }
+    textarea ,pre{
+      position: absolute;
+      font-size: 24px;
+      width: 500px;
+      height: 100px;
+      padding:0px;
+      margin: 0px;
+      border: 1px solid;
+      overflow: auto;
+      background-color: transparent;
+    }
+  </style>
+</head>
+<body>
+  <div>REGULAR EXPRESSION</div>
+  <input type="text" id="reStr" oninput=run()>
+  <div>
+    <input type="checkbox" name="" id="checkedg">g
+    <input type="checkbox" name="" id="checkedm">m
+    <input type="checkbox" name="" id="checkedi">i
+    <input type="checkbox" name="" id="checkeds">s
+  </div>
+  <div class="a1">TEST STRING</div>
+  <pre id="show"></pre>
+  <textarea onscroll="scrollsync()" name="" id="testStr" cols="30" rows="10" oninput=run()></textarea>
+
+
+
+  <script>
+    function getgmi(){
+      var res = ''
+      if(checkedg.checked) res += 'g'
+      if(checkedm.checked) res += 'm'
+      if(checkedi.checked) res += 'i'
+      if(checkeds.checked) res += 's'
+      return res
+    }
+
+
+    function scrollsync(){
+      show.scrollTop = testStr.scrollTop
+    }
+    function run (){
+      var str = testStr.value
+      var match
+      var startIdx = 0
+      var innerStr = ''
+      if(reStr.value == 0)  {
+        show.innerHTML = str
+        return
+      }
+      try{
+        var re = new RegExp(reStr.value,getgmi())
+      } catch(e){
+        if(e instanceof SyntaxError){
+          show.innerHTML = str
+          return
+        }else{
+          throw e
+        }
+      }
+      while(match = re.exec(str)){
+
+        innerStr += str.slice(startIdx, match.index)
+        innerStr += '<strong>' + match[0] + '</strong>'
+        startIdx = re.lastIndex
+        if(match[0] == '') re.lastIndex++
+        if(!re.global) {
+          startIdx += match[0].length
+          break
+        }
+      }
+      innerStr += str.slice(startIdx)
+
+      show.innerHTML = innerStr + '\n'
+    }
+  </script>
+</body>
+</html>
