@@ -1,0 +1,83 @@
+<style>
+  body{
+    margin:0
+  }
+  div {
+    height: 100px;
+    width: 100px;
+    background-color: pink;
+    position: absolute;
+    overflow: auto;
+    resize: both;
+  }
+  span{
+    display: block;
+    height: 20px;
+    background-color: grey;
+    cursor: pointer;
+  }
+</style>
+<div style="top:0px;left:0px" class="drag">
+  <span class="moveBar"></span>
+</div>
+<div style="top:0px;left:0px;background-color:blue;" class="drag">
+  <span class="moveBar"></span>
+</div>
+<div style="top:0px;left:0px;background-color:green;" class="drag">
+  <span class="moveBar"></span>
+</div>
+
+<script>
+  var startX
+  var startY
+
+  var nodeX
+  var nodeY
+  var state
+  var moveBar
+  var maxZ = 0
+  var nodeWidth
+  var nodeHeight
+
+  addEventListener('mousedown',function(e){
+
+    moveBar = e.target.closest('.moveBar')
+    startX = e.clientX
+    startY = e.clientY
+
+    if(moveBar){
+      console.log('down')
+      state = 'drag'
+      nodeX = parseInt(moveBar.closest('.drag').style.left)
+      nodeY = parseInt(moveBar.closest('.drag').style.top)
+
+      addEventListener('mousemove', move)
+    }
+    if(e.target.closest('.drag'))  {
+      // console.log('1')
+      e.target.closest('.drag').style.zIndex = maxZ++
+    }
+  })
+
+  function move(e){
+    // console.log('move')
+    if (e.which == 0)   {
+      removeEventListener('mousemove', move)
+      console.log('remove')
+    } else {
+      if(state == 'drag'){
+        console.log(e.clientX)
+        curX = e.clientX - startX + nodeX
+        curY = e.clientY - startY + nodeY
+        var moveBox = moveBar.closest('.drag')
+        if(curX < 0) curX = 0
+        if(curY < 0) curY = 0
+        console.log(curX)
+        moveBox.style.left = curX + 'px'
+        moveBox.style.top = curY + 'px'
+
+
+      }
+    }
+  }
+</script>

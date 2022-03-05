@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    svg{
+      display: block;
+      border: 2px solid black;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="tool='line';console.log(1)"> 丨 </button>
+  <button onclick="tool='rect';console.log(1)"> 口 </button>
+  <button onclick="tool='ellipse'"> ⚪ </button>
+
+
+  <input type="color"  id="color">
+  <input type="range"  id="range" value="1" min="1" max="50">
+  <svg style="width: 800px;height: 800px;"></svg>
+
+  <script>
+    var tool = 'line'
+    var svg = document.querySelector('svg')
+    var color = document.querySelector('#color')
+    var range = document.querySelector('#range')
+    var node
+    var prevx
+    var prevy
+    function elt(tagName, attrs = {},...children){
+      var el = document.createElementNS('http://www.w3.org/2000/svg', tagName)
+      for(var key in attrs){
+        var val = attrs[key]
+        el.setAttribute(key,val)
+      }
+      for(var child of children){
+        if(typeof child === 'string') child = document.createTextNode(child)
+        el.appendChild(child)
+      }
+      return el
+    }
+
+
+    svg.addEventListener('mousedown',function(e){
+      if(e.which === 1){
+        prevx = e.clientX - svg.getBoundingClientRect().x
+        prevy = e.clientY - svg.getBoundingClientRect().y
+        if(tool === 'line'){
+          node = elt('path',{
+            d:` M ${prevx} ${ prevy} L ${prevx} ${ prevy}`,
+            stroke: color.value,
+            'stroke-width' : range.value,
+            fill : 'none',
+            'stroke-linecap': 'round'
+          })
+          svg.appendChild(node)
+        }
+        if(tool === 'rect'){
+          node = elt('rect',{
+            x:`${prevx}`,
+            y:`${prevy}` ,
+            stroke: color.value,
+            'stroke-width' : range.value,
+            fill : 'none',
+          })
+          svg.appendChild(node)
+
+        }
+        if(tool === 'ellipse'){
+          node = elt('ellipse',{
+            stroke: color.value,
+            'stroke-width' : range.value,
+            fill : 'none',
+          })
+          svg.appendChild(node)
+
+
+        }
+      }
+      addEventListener('mousemove', move)
+    })
+    addEventListener('keydown',function(e){
+      if(e.ctrlKey == true && e.key == 'z'){
+        svg.removeChild(svg.lastChild)
+      }
+    })
+    function move(e){
+      if(e.which !== 1){
+        removeEventListener('mousemove', move)
+      } else {
+        var lastx = e.clientX - svg.getBoundingClientRect().x
+        var lasty = e.clientY - svg.getBoundingClientRect().y
+        if(tool === 'line'){
+          var d = node.getAttribute('d')
+          d += `L ${lastx} ${lasty}`
+          node.setAttribute('d',d)
+        }
+
+        if(tool === 'rect'){
+          var width = lastx - prevx
+          var height = lasty - prevy
+          if(width < 0){
+            node.setAttribute('x',lastx)
+            width *= -1
+          }
+          if(height < 0){
+            node.setAttribute('y',lasty)
+            height *= -1
+          }
+          node.setAttribute('width',width)
+          node.setAttribute('height',height)
+        }
+
+        if(tool === 'ellipse'){
+          var cx = (prevx + lastx) >> 1
+          var cy = (prevy + lasty) >> 1
+          var rx = (lastx - prevx) >> 1
+          if(rx < 0) rx = (prevx - lastx) >> 1
+          var ry = (lasty - prevy) >> 1
+          if(ry < 0) ry = (prevy - lasty) >> 1
+
+          console.log(cx,cy,rx,ry)
+          node.setAttribute('cx',cx)
+          node.setAttribute('cy',cy)
+          node.setAttribute('rx',rx)
+          node.setAttribute('ry',ry)
+        }
+      }
+    }
+  </script>
+</body>
+</html>
