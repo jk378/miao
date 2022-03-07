@@ -11,6 +11,18 @@
       display: block;
       border: 2px solid black;
     }
+    button{
+      width: 30px;
+      height: 30px;
+      margin-bottom: 10px;
+    }
+    .color{
+      width: 5em;
+      height: 30px;
+    }
+    .checkBox{
+      outline: 2px solid grey;
+    }
   </style>
 </head>
 <body>
@@ -20,17 +32,35 @@
 
 
   <input type="color"  id="color">
-  <input type="range"  id="range" value="1" min="1" max="50">
-  <svg style="width: 800px;height: 800px;"></svg>
+  <button class="color checkBox" id="color1" style="background-color: grey;">前景色</button>
+  <button class="color" id="color2" style="background-color: transparent;">背景色</button>
 
+  <input type="range"  id="range" value="5" min="1" max="50">
+
+  <button class="save" style="width: 50px;background-color: gold;">保存</button>
+
+  <svg version='1.1' xmlns='http://www.w3.org/2000/svg' style="width: 1000px;height: 800px;"></svg>
   <script>
     var tool = 'line'
     var svg = document.querySelector('svg')
     var color = document.querySelector('#color')
     var range = document.querySelector('#range')
     var node
+    var color1 = document.querySelector('#color1')
+    var color2 = document.querySelector('#color2')
     var prevx
     var prevy
+    var save = document.querySelector('.save')
+    var saved = true
+    color1.addEventListener('click',function(){
+      color1.classList.add('checkBox')
+      color2.classList.remove('checkBox')
+    })
+
+    color2.addEventListener('click',function(){
+      color2.classList.add('checkBox')
+      color1.classList.remove('checkBox')
+    })
     function elt(tagName, attrs = {},...children){
       var el = document.createElementNS('http://www.w3.org/2000/svg', tagName)
       for(var key in attrs){
@@ -43,18 +73,29 @@
       }
       return el
     }
+    var checkedBox
+
+
+
+    color.addEventListener('blur',function(){
+      checkedBox = document.querySelector('.checkBox')
+      checkedBox.style.backgroundColor = color.value
+    })
+
 
 
     svg.addEventListener('mousedown',function(e){
       if(e.which === 1){
+        saved = false
+
         prevx = e.clientX - svg.getBoundingClientRect().x
         prevy = e.clientY - svg.getBoundingClientRect().y
         if(tool === 'line'){
           node = elt('path',{
             d:` M ${prevx} ${ prevy} L ${prevx} ${ prevy}`,
-            stroke: color.value,
+            stroke: color1.style.backgroundColor,
             'stroke-width' : range.value,
-            fill : 'none',
+            fill : color2.style.backgroundColor,
             'stroke-linecap': 'round'
           })
           svg.appendChild(node)
@@ -63,18 +104,18 @@
           node = elt('rect',{
             x:`${prevx}`,
             y:`${prevy}` ,
-            stroke: color.value,
+            stroke: color1.style.backgroundColor,
             'stroke-width' : range.value,
-            fill : 'none',
+            fill : color2.style.backgroundColor,
           })
           svg.appendChild(node)
 
         }
         if(tool === 'ellipse'){
           node = elt('ellipse',{
-            stroke: color.value,
+            stroke: color1.style.backgroundColor,
             'stroke-width' : range.value,
-            fill : 'none',
+            fill : color2.style.backgroundColor,
           })
           svg.appendChild(node)
 
@@ -131,6 +172,22 @@
         }
       }
     }
+
+    save.addEventListener('click',function(){
+      var blob = new Blob([svg.outerHTML], {type:'image/svg+xml'})
+      var link = URL.createObjectURL(blob)
+      var anchor = document.createElement('a')
+      anchor.href = link
+      anchor.download = '临时.svg'
+      anchor.click()
+      saved = true
+    })
+
+    window.addEventListener('beforeunload',function(e){
+      //e.returnValue = '还未保存，确认退出吗？'
+      if(!saved) e.returnValue = true
+    })
+
   </script>
 </body>
 </html>

@@ -52,6 +52,7 @@
       nodeY = parseInt(moveBar.closest('.drag').style.top)
 
       addEventListener('mousemove', move)
+      e.preventDefault()
     }
     if(e.target.closest('.drag'))  {
       // console.log('1')
