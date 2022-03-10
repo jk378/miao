@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .checked{
+      color:red
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div data-tabname="About">sddffew</div>
+    <div data-tabname="详情">wefwef</div>
+    <div data-tabname="关于">wewfe</div>
+  </div>
+
+  <script>
+    var div = document.querySelector('div')
+    tab(div)
+    function tab(){
+
+      var divs = div.querySelectorAll('div div')
+      // console.log(divs)
+      for(var i = divs.length - 1;i >= 0;i--){
+        var button = document.createElement('button')
+        var text = document.createTextNode(divs[i].dataset.tabname)
+        button.appendChild(text)
+        div.prepend(button)
+
+        divs[i].hidden = true
+      }
+
+      var buttons = div.querySelectorAll('button')
+      // console.log(buttons)
+      for(let i = 0;i < buttons.length;i++){
+        buttons[i].addEventListener('click',function(){
+          for(let i = 0;i < buttons.length;i++){
+            buttons[i].classList.remove('checked')
+            divs[i].hidden = true
+          }
+          buttons[i].classList.add('checked')
+          divs[i].hidden = false
+        })
+      }
+      buttons[0].classList.add('checked')
+      divs[0].hidden = false
+    }
+  </script>
+</body>
+</html>

@@ -23,13 +23,16 @@
     .checkBox{
       outline: 2px solid grey;
     }
+    button:nth-child(4){
+      width:  50px;
+    }
   </style>
 </head>
 <body>
   <button onclick="tool='line';console.log(1)"> 丨 </button>
   <button onclick="tool='rect';console.log(1)"> 口 </button>
   <button onclick="tool='ellipse'"> ⚪ </button>
-
+  <button onclick="tool='reset'">橡皮</button>
 
   <input type="color"  id="color">
   <button class="color checkBox" id="color1" style="background-color: grey;">前景色</button>
@@ -90,12 +93,18 @@
 
         prevx = e.clientX - svg.getBoundingClientRect().x
         prevy = e.clientY - svg.getBoundingClientRect().y
-        if(tool === 'line'){
+        var 前景色 = color1.style.backgroundColor
+        var 背景色 = color2.style.backgroundColor
+        if(tool === 'line' || tool === 'reset'){
+          if(tool === 'reset') {
+            前景色 = '#FFFFFF'
+            背景色 = 'none'
+          }
           node = elt('path',{
             d:` M ${prevx} ${ prevy} L ${prevx} ${ prevy}`,
-            stroke: color1.style.backgroundColor,
+            stroke: 前景色,
             'stroke-width' : range.value,
-            fill : color2.style.backgroundColor,
+            fill : 背景色,
             'stroke-linecap': 'round'
           })
           svg.appendChild(node)
@@ -104,18 +113,18 @@
           node = elt('rect',{
             x:`${prevx}`,
             y:`${prevy}` ,
-            stroke: color1.style.backgroundColor,
+            stroke: 前景色,
             'stroke-width' : range.value,
-            fill : color2.style.backgroundColor,
+            fill : 背景色,
           })
           svg.appendChild(node)
 
         }
         if(tool === 'ellipse'){
           node = elt('ellipse',{
-            stroke: color1.style.backgroundColor,
+            stroke: 前景色,
             'stroke-width' : range.value,
-            fill : color2.style.backgroundColor,
+            fill : 背景色,
           })
           svg.appendChild(node)
 
@@ -135,7 +144,7 @@
       } else {
         var lastx = e.clientX - svg.getBoundingClientRect().x
         var lasty = e.clientY - svg.getBoundingClientRect().y
-        if(tool === 'line'){
+        if(tool === 'line' || tool === 'reset'){
           var d = node.getAttribute('d')
           d += `L ${lastx} ${lasty}`
           node.setAttribute('d',d)

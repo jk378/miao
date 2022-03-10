@@ -59,7 +59,64 @@ var jk378 = {
     return array
   },
   findIndex : function findIndex(array, predicate = identity,fromIndex = 0){
-
+    if(Array.isArray(predicate)){
+      for(var i = fromIndex;i < array.length;i++){
+        for(var key in array[i]){
+          if(key === predicate[0] && array[i][key] === predicate[1]) return i
+        }
+      }
+    }
+    if(typeof predicate === 'object'){
+      for(var i = fromIndex;i < array.length;i++){
+        var flag = true
+        for(var key in predicate){
+          if(key in array[i] && predicate[key] === array[i][key]) continue
+          else flag = false
+        }
+        if(flag) return i
+      }
+    }
+    if(typeof predicate === 'string'){
+      for(var i = fromIndex;i < array.length;i++){
+        if(array[i][predicate] === true) return i
+      }
+    }
+    if(typeof predicate === 'function'){
+      for(var i = fromIndex;i < array.length;i++){
+        if(predicate(array[i])) return i
+      }
+    }
+    return -1
+  },
+  findLastIndex: function findLastIndex(array, predicate = identity,fromIndex = array.length-1){
+    if(Array.isArray(predicate)){
+      for(var i = fromIndex;i >= 0;i--){
+        for(var key in array[i]){
+          if(key === predicate[0] && array[i][key] === predicate[1]) return i
+        }
+      }
+    }
+    if(typeof predicate === 'object'){
+      for(var i = fromIndex;i >= 0;i--){
+        var flag = true
+        for(var key in predicate){
+          if(key in array[i] && predicate[key] === array[i][key]) continue
+          else flag = false
+        }
+        if(flag) return i
+      }
+    }
+    if(typeof predicate === 'string'){
+      for(var i = fromIndex;i >= 0;i--){
+        if(array[i][predicate] === true) return i
+      }
+    }
+    if(typeof predicate === 'function'){
+      for(var i = fromIndex;i >= 0;i--){
+        if(predicate(array[i])) return i
+      }
+    }
+    return -1
   },
   flatten : function flatten(array){
     var res = []
