@@ -1,4 +1,26 @@
 var jk378 = {
+  iteratee :function iteratee(predicate){
+    if(typeof predicate === 'string'){
+      predicate = jk378.property(predicate)
+    }
+    if(Array.isArray(predicate)){
+      predicate = jk378.matchesProperty(...predicate)
+    }
+    if(typeof predicate === 'object'){
+      predicate = jk378.matches(predicate)
+    }
+    return predicate
+  },
+  matchesProperty: function matchesProperty (...args){
+
+    var path = jk378.toPath(args[0])
+    return function (obj){
+      for(var key of path){
+        obj = obj[key]
+      }
+      return obj === args[1]
+    }
+  } ,
   chunk : function chunk(array, size = 1){
     var res = []
     var count = 0
@@ -398,5 +420,42 @@ var jk378 = {
     }
     return true
   },
-
+  differenceBy:function differenceBy(array, ...args){
+    var predicate = jk378.iteratee(args.pop())
+    var args = Array.from(args)
+    args = jk378.flatten(args).map(it => predicate(it))
+    var res = []
+    array.forEach((it,idx) =>{
+      if(!args.includes(predicate(it))){
+        res.push(array[idx])
+      }
+    } )
+    return res
+  } ,
+  differenceWith: function differenceWith(array,...args){
+    var comparator = args.pop()
+    var res = []
+    var args = jk378.flatten(args)
+    for(var i = 0;i < array.length;i++){
+      var flag = false
+      for(var j = 0;j < args.length;j++){
+        if(comparator(array[j] , args[i])){
+          flag = true
+        }
+      }
+      if(!flag){
+        res.push(array[i])
+      }
+    }
+    return res
+  },
+  dropRightWhile:function dropRightWhile(array, predicate){
+    var predicate = this.iteratee(predicate)
+    var res = Array.from(array)
+    for(var i = res.length - 1;i >= 0;i--){
+      if(predicate(res[i])) res.pop()
+      else return res
+    }
+    return res
+  },
 }
