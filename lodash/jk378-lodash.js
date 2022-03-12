@@ -421,7 +421,10 @@ var jk378 = {
     return true
   },
   differenceBy:function differenceBy(array, ...args){
-    var predicate = jk378.iteratee(args.pop())
+    var predicate
+    if(!Array.isArray(args[args.length - 1] )){
+      predicate = jk378.iteratee(args.pop())
+    } else predicate = it => it
     var args = Array.from(args)
     args = jk378.flatten(args).map(it => predicate(it))
     var res = []
