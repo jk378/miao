@@ -507,5 +507,20 @@ var jk378 = {
     res = Array.from(new Set(res))
     return res
   },
-
+  pull: function pull(array,...vals){
+    for(var i = 0;i < array.length;i++){
+      if(vals.indexOf(array[i]) >= 0){
+        array.splice(i--,1)
+      }
+    }
+    return array
+  },
+  pullAll :function pullAll(ary1,ary2){
+    for(var i = 0;i < ary1.length;i++){
+      if(ary2.indexOf(ary1[i]) >= 0){
+        ary1.splice(i--,1)
+      }
+    }
+    return ary1
+  },
 }
