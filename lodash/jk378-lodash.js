@@ -453,7 +453,7 @@ var jk378 = {
     return res
   },
   dropRightWhile:function dropRightWhile(array, predicate){
-    var predicate = this.iteratee(predicate)
+    var predicate = jk378.iteratee(predicate)
     var res = Array.from(array)
     for(var i = res.length - 1;i >= 0;i--){
       if(predicate(res[i])) res.pop()
@@ -461,4 +461,51 @@ var jk378 = {
     }
     return res
   },
+  dropWhile:function dropRightWhile(array, predicate){
+    var predicate = jk378.iteratee(predicate)
+    var res = Array.from(array)
+    for(var i = 0;i < res.length ;i++){
+      if(predicate(res[i])) {
+        res.shift()
+        i--
+      }
+      else return res
+    }
+    return res
+  },
+  intersection: function intersection(...arrays){
+    var res = []
+    var ary = arrays.shift()
+    var array = this.flatten(arrays)
+    for(var i = 0;i < ary.length;i++){
+      if(array.includes(ary[i])){
+        res.push(ary[i])
+      }
+    }
+    res = Array.from(new Set(res))
+    return res
+  },
+  intersectionBy: function intersectionBy(ary1,ary2,predicate){
+    var res = []
+    var predicate = this.iteratee(predicate)
+    var ary2 = ary2.map(it => predicate(it))
+    for(var i = 0;i < ary1.length;i++){
+      if(ary2.includes(predicate(ary1[i]))){
+        res.push(ary1[i])
+      }
+    }
+    res = Array.from(new Set(res))
+    return res
+  },
+  intersectionWith: function intersectionWith(ary1,ary2,comparator){
+    var res = []
+    for(var i = 0;i < ary1.length;i++){
+      for(var item of ary2){
+        if(comparator(ary1[i],item)) res.push(ary1[i])
+      }
+    }
+    res = Array.from(new Set(res))
+    return res
+  },
+
 }
