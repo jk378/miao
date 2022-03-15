@@ -523,4 +523,72 @@ var jk378 = {
     }
     return ary1
   },
+  uniqBy :function uniqBy(array, iteratee){
+    var iteratee = this.iteratee(iteratee)
+    var map = {}
+    var res = []
+    array.forEach((it,idx) =>{
+      if(! (iteratee(it) in map)){
+        map[iteratee(it)] = idx
+        res.push(array[idx])
+      }
+    })
+    return res
+  },
+  uniqWith: function uniqWith(array, comparator){
+    var ary = Array.from(array)
+    for(var i = 1;i < ary.length;i++){
+      for(var j = 0;j < i;j++){
+        if(comparator(ary[i] , ary[j])){
+          ary.splice(i--,1)
+          break
+        }
+      }
+    }
+    return ary
+  },
+  countBy : function countBy(collection, iteratee){
+    var res = {}
+    var iteratee = this.iteratee(iteratee)
+    for(var item of collection){
+      if(!(iteratee(item) in res)){
+        res[iteratee(item)] = 1
+      } else res[iteratee(item)]++
+    }
+    return res
+  },
+  maxBy:function maxBy(array, iteratee){
+    var iteratee = this.iteratee(iteratee)
+    var max = 0
+    var maxV = iteratee(array[0])
+    array.reduce((a,b,idx)=>{
+      if(iteratee(b) > maxV){
+        max = idx
+        maxV = iteratee(b)
+      }
+    })
+    return array[max]
+  },
+  sumBy: function sumBy(array, iteratee){
+    var iteratee = this.iteratee(iteratee)
+    return array.reduce( (a,b) => a + iteratee(b) ,0)
+  },
+  size: function size(collection){
+    var sum = 0
+    if(typeof collection === 'object'){
+      for(var item in collection){
+        sum++
+      }
+      return sum
+    }
+    return collection.length
+  },
+  sample: function sample(){
+
+  },
+
+  // every filter find forEach ceil   cloneDeep
+  // keyBy,map isEqual isNil isNull  isNumber
+  // partition,reduce,reduceRight,reject,shuffle,some
+
 }
