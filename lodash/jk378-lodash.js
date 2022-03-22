@@ -583,12 +583,189 @@ var jk378 = {
     }
     return collection.length
   },
-  sample: function sample(){
+  sample: function sample(collection){
+    return collection[Math.random() * collection.length | 0]
+  },
+  random : function random(lower = 0, upper = 1, floating = false){
+    var args = Array.from(arguments)
+    var floating = args.some(it => it % 1 !== 0 && typeof it === 'number' || it === true)
+    var nums = args.filter(it => typeof it === 'number').length
+    var range
+    if(nums === 2){
+      range = [args[0], args[1]]
+    } else if(nums === 1) {
+      range = [0, args[0]]
+    } else{
+      range = [0, 1]
+    }
 
+    return floating ? Math.random() * (range[1] - range[0] ) + range[0] :  (Math.random() * (range[1] - range[0] + 1) + range[0]) | 0
+  },
+  some: function some(collection, predicate = it => it){
+    var predicate = this.iteratee(predicate)
+    for(var i = 0;i < collection.length;i++){
+      if(predicate(collection[i], i , collection) === true) return true
+    }
+    return false
+  },
+  every: function every(collection, predicate = it => it){
+    var predicate = this.iteratee(predicate)
+    for(var i = 0;i < collection.length;i++){
+      if(predicate(collection[i], i , collection) === false) return false
+    }
+    return true
+  },
+  ceil: function ceil(number, precision = 0){  //很多情况有问题
+    var precision = 10 ** precision
+    return number * precision % 1 === 0 ? number : Math.floor(number * precision + 1) / precision
+  },
+  find: function find(collection, predicate = it => it,fromIndex = 0){
+    var predicate = this.iteratee(predicate)
+    for(var i = fromIndex;i < collection.length;i++){
+      if(predicate(collection[i])) return collection[i]
+    }
+  },
+  findLast: function findLast(collection, predicate = it => it,fromIndex = collection.length-1){
+    var predicate = this.iteratee(predicate)
+    for(var i = fromIndex;i >= 0;i--){
+      if(predicate(collection[i])) return collection[i]
+    }
+  },
+  forEach: function forEach(collection, iteratee){
+    for(var key in collection){
+      iteratee(collection[key],key,collection)
+    }
+    return collection
+  },
+  forEachRight: function forEachRight(collection, iteratee){
+    if(!Array.isArray(collection)){
+      var arr = Object.keys(collection).reverse()
+      for(var i = 0;i < arr.length;i++){
+        iteratee(collection[arr[i]],arr[i],collection)
+      }
+    } else{
+      for(var i = collection.length - 1;i >= 0;i --){
+        iteratee(collection[i],i,collection)
+      }
+    }
+    return collection
+  },
+  filter: function filter(collection, predicate){
+    var predicate = this.iteratee(predicate)
+    var res = []
+    for(var i = 0;i < collection.length;i++){
+      if(predicate(collection[i])) res.push(collection[i])
+    }
+    return res
+  },
+  map: function map(collection, iteratee){
+    var iteratee = this.iteratee(iteratee)
+    var res = []
+    for(var key in collection){
+      res.push(iteratee(collection[key], key, collection))
+    }
+    return res
+  },
+  keyBy: function keyBy(collection, iteratee){
+    var iteratee = this.iteratee(iteratee)
+    var res = {}
+    for(var item in collection){
+      if(Array.isArray(collection)){
+        var key = iteratee(collection[item])
+      } else key = iteratee(item)
+
+      res[key] = collection[item]
+    }
+    return res
+  },
+  reject: function reject(collection, predicate){
+    return this.filter(collection,this.negate(this.iteratee(predicate)))
+  },
+  shuffle: function shuffle(collection){
+    var res = []
+    var n = collection.length - 1
+    for(var i = n ;i >= 0;i--){
+      res.push(collection.splice(Math.random() * (i + 1),1)[0])
+    }
+    return res
+  },
+  cloneDeep: function cloneDeep(val){
+    if(Array.isArray(val)){
+      var res = []
+      for(var key of val){
+        if(Object.prototype.toString.call(val[key]) !== '[object Object]' && !Array.isArray(val[key])){
+          res.push(key)
+        } else {
+          key = cloneDeep(key)
+          res.push(key)
+        }
+      }
+    } else if(Object.prototype.toString.call(val) === '[object Object]'){
+      var res = {}
+      for(var key in val){
+        if(Object.prototype.toString.call(val[key]) !== '[object Object]' && !Array.isArray(val[key])){
+          res[key] = val[key]
+        } else res[key] = cloneDeep(val[key])
+      }
+    } else {
+      return val
+    }
+    return res
+  },
+  isEqual: function isEqual(value, other){
+    if(Array.isArray(value) && Array.isArray(other)){
+      if(value.length !== other.length) return false
+      for(var i = 0;i < value.length;i++){
+        if(isEqual(value[i],other[i]) === false) return false
+      }
+    }else if(Object.prototype.toString.call(value) === '[object Object]' && Object.prototype.toString.call(other) === '[object Object]'){
+      if(Object.keys(value).toString() === Object.keys(other).toString()){
+        for(var key in value){
+          if(isEqual(value[key],other[key]) === false) return false
+        }
+      } else return false
+    } else {
+      if(Object.prototype.toString.call(value) !== Object.prototype.toString.call(other) ||
+      value.toString() !== other.toString()) return false
+    }
+    return true
+  },
+  reduce: function reduce(collection,iteratee,accumulator){
+    if(Array.isArray(collection)){
+      var accumul = accumulator === undefined ? collection[0] : accumulator
+      for(var i = accumulator === undefined ? 1 : 0 ;i < collection.length;i++){
+        accumul = iteratee(accumul,collection[i],i,collection)
+      }
+      return accumul
+    } else{
+      var keys = Object.keys(collection)
+      var accumul = accumulator === undefined ? collection[keys[0]] : accumulator
+      for(var i = accumulator === undefined ? 1 : 0 ;i < keys.length;i++){
+        accumul = iteratee(accumul,collection[keys[i]],keys[i],collection)
+      }
+      return accumul
+    }
+  },
+  reduceRight:function reduceRight(collection,iteratee,accumulator){
+    if(Array.isArray(collection)){
+      var l = collection.length - 1
+      var accumul = accumulator === undefined ? collection[l] : accumulator
+      for(var i = accumulator === undefined ? l - 1 : l ;i >= 0 ;i--){
+        accumul = iteratee(accumul,collection[i],i,collection)
+      }
+      return accumul
+    } else{
+      var keys = Object.keys(collection).reverse()
+      var accumul = accumulator === undefined ? collection[keys[0]] : accumulator
+      for(var i = accumulator === undefined ? 1 : 0 ;i < keys.length;i++){
+        accumul = iteratee(accumul,collection[keys[i]],keys[i],collection)
+      }
+      return accumul
+    }
   },
 
-  // every filter find forEach ceil   cloneDeep
-  // keyBy,map isEqual isNil isNull  isNumber
-  // partition,reduce,reduceRight,reject,shuffle,some
 
+  // isNil isNull  isNumber  partition,  forIn forInRight forOwn/right constant propertyOf
+  // sortedIndex union unionBy unionWith unzip unzipWith  xor xorBy xorWith flatMap/Deep/Depth sortBy defer delay
+  //functions invert invoke keys mapKeys mapValues merge omit pick result set pad padEnd padStart spread curry memoize
 }
