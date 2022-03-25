@@ -141,34 +141,23 @@ var jk378 = {
     return -1
   },
   flatten : function flatten(array){
-    var res = []
-    for(var i = 0;i < array.length;i++){
-      if(Array.isArray(array[i])){
-        for(var j = 0; j < array[i].length;j++){
-          res.push(array[i][j] )
-        }
-      } else(
-        res.push(array[i])
-      )
-    }
-    return res
+    return this.flattenDepth(array)
   },
-  flattenDeep : function flattenDeep(array, res = []){
-    for(var i = 0;i < array.length;i++){
-      if(!Array.isArray(array[i])) res.push(array[i])
-      else flattenDeep(array[i],res)
-    }
-    return res
+  flattenDeep : function flattenDeep(array){
+    return this.flattenDepth(array, Infinity)
   },
   flattenDepth : function flattenDepth(array, depth = 1){
-    if(depth == 0) return [...array]
     var res = []
     for(var i = 0;i < array.length;i++){
-      if(Array.isArray(array[i])) res.push(...flattenDepth(array[i],depth - 1))
-      else res.push(array[i])
+      if(Array.isArray(array[i]) && depth > 0){
+        res = res.concat(flattenDepth(array[i] ,depth - 1))
+      } else{
+        res.push(array[i])
+      }
     }
     return res
-  },
+  }
+  ,
   fromPairs : function fromPairs(pairs) {
     var res = {}
     for(var i = 0;i < pairs.length;i++){
@@ -245,7 +234,6 @@ var jk378 = {
   },
   zip : function zip (){
     var res = []
-
     for(var i = 0;i < arguments[0].length;i++){
       res[i] = []
       for(var j = 0;j < arguments.length;j++){
@@ -341,7 +329,7 @@ var jk378 = {
     var res = []
     return jk378.flatten(ary.map( it => predicate(it)))
   },
-  toPath : function toPath(val){
+  toPath: function toPath(val){
     if(typeof val === 'string') return val.split('.').flatMap( it => it.split('[')).flatMap( it => it.split(']'))
     .filter(it =>it)
     else return val
@@ -763,9 +751,269 @@ var jk378 = {
       return accumul
     }
   },
+  forIn: function forIn(object, iteratee){
+    for(var key in object){
+      iteratee(object[key],key,object)
+    }
+  },
+  forInRight: function forInRight(object, iteratee){
+    var keys = []
+    for(var key in object){
+      keys.push(key)
+    }
+    for(var i = keys.length - 1;i >= 0;i--){
+      iteratee(object[keys[i]],keys[i],object)
+    }
+  },
+  forOwn: function forOwn(object, iteratee){
+    var keys = Object.keys(object)
+    for(var key of keys){
+      iteratee(object[key],key,object)
+    }
+  },
+  forOwnRight: function forOwnRight(object, iteratee){
+    var keys = Object.keys(object).reverse()
+    for(var key of keys){
+      iteratee(object[key],key,object)
+    }
+  },
+  constant: function constant(val){
+    return () => val
+  },
+  propertyOf: function propertyOf(object){
+    return function (path){
+      var res = object
+      var path = jk378.toPath(path)
+      for(var key of path){
+        res = res[key]
+      }
+      return res
+    }
+  },
+  partition: function partition(collection, predicate){
+    var predicate = this.iteratee(predicate)
+    var res = [[],[]]
+    for(var i = 0;i < collection.length;i++){
+      if(predicate(collection[i])) res[0].push(collection[i])
+      else res[1].push(collection[i])
+    }
+    return res
+  },
+  union: function union(...arrays){
+    var res = arrays.reduce((a,b) => a.concat(b))
+    return Array.from(new Set(res))
+  },
+  unionBy: function unionBy(...args){
+    var args = Array.from(args)
+    var predicate = this.iteratee(args.pop())
+    var res = []
+    var map = {}
+    args = args.reduce((a,b) => a.concat(b)).forEach(it => {
+      if(!( predicate(it) in map)){
+        map[predicate(it)] = 1
+        res.push(it)
+      }
+    })
+    return res
+  }
+  ,
+  unionWith: function unionWith(...args){
+    var args = Array.from(args)
+    var comparator = args.pop()
+    var res = []
+    args = args.reduce((a,b) => a.concat(b)).forEach(it => {
+      var flag = false
+      for(var key of res){
+        if(comparator(key, it)){
+          flag = true
+          break
+        }
+      }
+      if(!flag)res.push(it)
+    })
+    return res
+  },
+  xor: function xor(...arrays){
+    var array = Array.from(arrays).reduce((a,b) => a.concat(b),[])
+    for(var i = 0;i < array.length;i++){
+      var idx = array.indexOf(array[i],i+1)
+      if(idx > 0){
+        array.splice(idx, 1)
+        array.splice(i,1)
+      }
+    }
+    return array
+  },
+  xorBy: function xorBy(...args){
+    var array = Array.from(args).reduce((a,b) => a.concat(b),[])
+    var predicate = this.iteratee(array.pop())
 
+    for(var i = 0;i < array.length;i++){
+      var idx = array.map(it => predicate(it)).indexOf(predicate(array[i]),i+1)
+      if(idx > 0){
+        array.splice(idx, 1)
+        array.splice(i,1)
+      }
+    }
+    return array
+  },
+  xorWith: function xorWith(...args){
+    var array = Array.from(args).reduce((a,b) => a.concat(b),[])
+    var comparator = array.pop()
+    for(var i = 0;i < array.length - 1;i++){
+      var flag = false
+      for(var j = i + 1;j < array.length;j++){
+        if(comparator(array[i],array[j])){
+          flag = true
+          array.splice(j--,1)
+        }
+      }
+      if(flag) array.splice(i--,1)
+    }
+    return array
+  },
+  functions: function functions(object){
+    var res = []
+    for(var key in object){
+      if(object.hasOwnProperty(key) && Object.prototype.toString.call(object[key]) === '[object Function]'){
+        res.push(key)
+      }
+    }
+    return res
+  },
+  invert: function invert(object){
+    var res = {}
+    for(var key in object){
+      var nkey = object[key]
+      res[nkey] = key
+    }
+    return res
+  },
+  invertBy: function invertBy(object,iteratee = it => it){
+    var res = {}
+    var iteratee = this.iteratee(iteratee)
+    for(var key in object){
+      var nkey = iteratee(object[key])
+      if(res[nkey]) {
+        res[nkey].push(key)
+      } else{
+        res[nkey] = [key]
+      }
+    }
+    return res
+  },
+  invoke: function invoke(object, path, ...args){
+    var path = this.toPath(path)
+    var method = path.pop()
+    for(var i of path){
+      object = object[i]
+    }
+    return object[method](...args)
+  },
+  invokeMap:function invokeMap(collection, path, ...args){
+    if(typeof path !== 'function'){
+      path = this.toPath(path)
+      return collection.map( it => it[path](...args))
+    } else {
+      return collection.map( it => path.call(it,...args) )
+    }
+  },
+  keys: function keys(object){
+    var res = []
+    for(var key in object){
+      if(object.hasOwnProperty(key)){
+        res.push(key)
+      }
+    }
+    return res
+  },
+  pad: function pad(string = '', length = 0, chars = ' '){
+    var l = string.length
+    var left = ''
+    var right = ''
+    if(l < length){
+      var leftl = (length - l) >> 1
+      left = chars.repeat((leftl / chars.length) | 0) + chars.slice(0,leftl % chars.length)
+      var rightl = length - l - leftl
+      right = chars.repeat((rightl / chars.length) | 0) + chars.slice(0,rightl % chars.length)
+    }
+    return left + string + right
+  },
+  padEnd:function padEnd(string = '', length = 0, chars = ' '){
+    var l = string.length
+    var right = ''
+    if(l < length){
+      var rightl = length - l
+      right = chars.repeat((rightl / chars.length) | 0) + chars.slice(0,rightl % chars.length)
+    }
+    return string + right
+  },
+  padStart: function padStart(string = '', length = 0, chars = ' '){
+    var l = string.length
+    var left = ''
+    if(l < length){
+      var leftl = length - l
+      left = chars.repeat((leftl / chars.length) | 0) + chars.slice(0,leftl % chars.length)
+    }
+    return left + string
+  },
+  flatMap: function flatMap(collection, iteratee){
+    var res = []
+    for(var key in collection){
+      res.push(...iteratee(collection[key],key,collection))
+    }
+    return res
+  },
+  flatMapDeep: function flatMapDeep(collection, iteratee){
+    return this.flatMapDepth(collection,iteratee,Infinity)
+  },
+  flatMapDepth: function flatMapDepth(collection, iteratee, depth = 1){
+    var res = []
+    for(var key in collection){
+      res.push(iteratee(collection[key],key,collection))
+    }
+    return this.flattenDepth(res,depth)
+  },
+  unzip: function unzip(array){
+    var res = []
+    for(var i = 0;i < array[0].length;i++){
+      var temp = []
+      for(var j = 0;j < array.length;j++){
+        temp.push(array[j][i])
+      }
+      res.push(temp)
+    }
+    return res
+  },
+  unzipWith: function unzipWith(array, func){
+    var res = []
+    for(var i = 0;i < array[0].length;i++){
+      var temp = []
+      for(var j = 0;j < array.length;j++){
+        temp.push(array[j][i])
+      }
+      res.push(temp.reduce((a,b) => func(a,b)))
+    }
+    return res
+  },
+  pick: function pick(obj, paths){
+    var res = {}
+    if(typeof paths !== 'string'){
+      for(var i = 0;i < paths.length;i++){
+        var temp = this.toPath(paths[i])
+        res[temp] = obj[temp]
+      }
+    } else {
+      var temp = this.toPath(paths)
+      res[temp] = obj[temp]
+    }
+    return res
+  },
+  pickBy: function pickBy(){
 
-  // isNil isNull  isNumber  partition,  forIn forInRight forOwn/right constant propertyOf
-  // sortedIndex union unionBy unionWith unzip unzipWith  xor xorBy xorWith flatMap/Deep/Depth sortBy defer delay
-  //functions invert invoke keys mapKeys mapValues merge omit pick result set pad padEnd padStart spread curry memoize
+  },
+
+  // isNil isNull  isNumber  ,
+  // sortedIndex  sortBy defer delay
+  // mapKeys mapValues merge/With omit pick result set spread curry memoize
 }
